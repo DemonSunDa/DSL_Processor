@@ -32,6 +32,64 @@ module TOP(
     inout DATA_MOUSE
 );
 
+    // Main bus
+    wire [7:0] BUS_ADDR;
+    wire [7:0] BUS_DATA;
+    wire BUS_WE;
+
+    // ROM bus
+    wire ROM_ADDRESS;
+    wire ROM_DATA;
+
+    // Interrupt
+    wire [1:0] BUS_INTERRUPT_RAISE;
+    wire [1:0] BUS_INTERRUPT_ACK;
+
+    Processor CPU(
+        // Standard signals
+        .CLK(CLK),
+        .RESET(RESET),
+        // Main bus signals
+        .BUS_DATA(BUS_DATA),
+        .BUS_ADDR(BUS_ADDR),
+        .BUS_WE(BUS_WE),
+        // ROM bus signals
+        .ROM_DATA(ROM_DATA),
+        .ROM_ADDRESS(ROM_ADDRESS),
+        // Interrupt signals
+        .BUS_INTERRUPT_RAISE(BUS_INTERRUPT_RAISE),
+        .BUS_INTERRUPT_ACK(BUS_INTERRUPT_ACK)
+    );
+
+    RAM MEM_DATA(
+        // Standard signals
+        .CLK(CLK),
+        // Main bus signals
+        .BUS_DATA(BUS_DATA),
+        .BUS_ADDR(BUS_ADDR),
+        .BUS_WE(BUS_WE)
+    );
+
+    ROM MEM_INST(
+        // Standard signals
+        .CLK(CLK),
+        // ROM bus signals
+        .DATA(ROM_DATA),
+        .ADDR(ROM_ADDRESS)
+    );
+
+    Timer TIMER0(
+        // Standard signals
+        .CLK(CLK),
+        .RESET(RESET),
+        // Main bus signals
+        .BUS_DATA(BUS_DATA),
+        .BUS_ADDR(BUS_ADDR),
+        .BUS_WE(BUS_WE),
+        // Interrupt signals
+        .BUS_INTERRUPT_RAISE(BUS_INTERRUPT_RAISE[1]),
+        .BUS_INTERRUPT_ACK(BUS_INTERRUPT_ACK[1])
+    );
 
 
 endmodule

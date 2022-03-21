@@ -85,7 +85,7 @@ module Processor(
         // I/O
         .IN_A(currRegA),
         .IN_B(currRegB),
-        .Alu_Op_Code(ProgMemoryOut[7:4]),
+        .ALU_Op_Code(ProgMemoryOut[7:4]),
         .OUT_RESULT(AluOut)
     );
 
@@ -141,8 +141,8 @@ module Processor(
 
     // TODO Goto ADDR
     GOTO =                      8'h50,
-    GOTO_1 =                    8'h51,
-    GOTO_2 =                    8'h52,
+    GOTO_0 =                    8'h51,
+    GOTO_1 =                    8'h52,
     // TODO Goto IDLE
     GOTO_IDLE =                 8'h60,
     // TODO Functrion Call
@@ -151,13 +151,13 @@ module Processor(
     RETURN =                    8'h80,
     RETURN_0 =                  8'h81,
     // TODO Dereference
-    DE_REERENCE_A =             8'h90,
-    DE_REERENCE_B =             8'h91,
+    DE_REFERENCE_A =             8'h90,
+    DE_REFERENCE_B =             8'h91,
     DE_REFERENCE_0 =            8'h92,
 
     // NOP
     NOP =                       8'hA0,
-    NOP =                       8'hA1;
+    NOP_0 =                     8'hA1;
 
 
     // Sequential SM
@@ -246,7 +246,7 @@ module Processor(
             CHOOSE_OPP : begin
                 case (ProgMemoryOut[3:0])
                     4'h0    : nextState = READ_FROM_MEM_TO_A;
-                    4'h1    : nextState = READ_FROM_MEM_TO_A;
+                    4'h1    : nextState = READ_FROM_MEM_TO_B;
                     4'h2    : nextState = WRITE_TO_MEM_FROM_A;
                     4'h3    : nextState = WRITE_TO_MEM_FROM_B;
                     4'h4    : nextState = DO_MATHS_OPP_SAVE_IN_A;
@@ -256,8 +256,8 @@ module Processor(
                     4'h8    : nextState = IDLE;
                     4'h9    : nextState = FUNCTION_CALL;
                     4'hA    : nextState = RETURN;
-                    4'hB    : nextState = DE_REERENCE_A;
-                    4'hC    : nextState = DE_REERENCE_B;
+                    4'hB    : nextState = DE_REFERENCE_A;
+                    4'hC    : nextState = DE_REFERENCE_B;
                     4'hF    : nextState = NOP;
                     default : nextState = currState;
                     //? Any other command would stuck here?
@@ -409,7 +409,7 @@ module Processor(
 
             // Wait state for new prog address to settle
             GOTO_1 : begin
-                next_state = CHOOSE_OPP;
+                nextState = CHOOSE_OPP;
             end
 
         // TODO Goto IDLE
@@ -439,7 +439,7 @@ module Processor(
 
         // TODO Dereference
             // Dereference the pointer A to memory, save the value of mem[A] back
-            DE_REERENCE_A : begin
+            DE_REFERENCE_A : begin
                 nextState = DE_REFERENCE_0;
                 nextBusAddr = currRegA;
                 nextRegSelect = 1'b0;
