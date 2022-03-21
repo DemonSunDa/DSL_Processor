@@ -56,7 +56,7 @@ module Processor(
     reg [7:0] currRegA, nextRegA;
     reg [7:0] currRegB, nextRegB;
     reg currRegSelect, nextRegSelect;
-    reg [7:0] currProgContrext, nextProgContext;
+    reg [7:0] currProgContext, nextProgContext;
 
     // Dedicated interrupt output lines - one for each interrupt line
     reg [1:0] currInterruptAck, nextInterruptAck;
@@ -85,7 +85,7 @@ module Processor(
         // I/O
         .IN_A(currRegA),
         .IN_B(currRegB),
-        .IN_OPP_TYPE(ProgMemoryOut[7:4]),
+        .Alu_Op_Code(ProgMemoryOut[7:4]),
         .OUT_RESULT(AluOut)
     );
 
@@ -135,11 +135,29 @@ module Processor(
     DO_MATHS_OPP_0 =            8'h32, // wait for new op address to settle, end op
 
     // TODO In/Equality
+    BRANCH_IN_EQUALITY =        8'h40,
+    BRANCH_IN_EQUALITY_0 =      8'h41,
+    BRANCH_IN_EQUALITY_1 =      8'h42,
+
     // TODO Goto ADDR
+    GOTO =                      8'h50,
+    GOTO_1 =                    8'h51,
+    GOTO_2 =                    8'h52,
     // TODO Goto IDLE
+    GOTO_IDLE =                 8'h60,
     // TODO Functrion Call
+    FUNCTION_CALL =             8'h70,
     // TODO Function Return
+    RETURN =                    8'h80,
+    RETURN_0 =                  8'h81,
     // TODO Dereference
+    DE_REERENCE_A =             8'h90,
+    DE_REERENCE_B =             8'h91,
+    DE_REFERENCE_0 =            8'h92,
+
+    // NOP
+    NOP =                       8'hA0,
+    NOP =                       8'hA1;
 
 
     // Sequential SM
@@ -233,28 +251,31 @@ module Processor(
                     4'h3    : nextState = WRITE_TO_MEM_FROM_B;
                     4'h4    : nextState = DO_MATHS_OPP_SAVE_IN_A;
                     4'h5    : nextState = DO_MATHS_OPP_SAVE_IN_B;
-                    4'h6    : nextState = IF_A_EQUALITY_B_GOTO;
+                    4'h6    : nextState = BRANCH_IN_EQUALITY;
                     4'h7    : nextState = GOTO;
                     4'h8    : nextState = IDLE;
-                    4'h9    : nextState = FUNCTION_START;
+                    4'h9    : nextState = FUNCTION_CALL;
                     4'hA    : nextState = RETURN;
                     4'hB    : nextState = DE_REERENCE_A;
                     4'hC    : nextState = DE_REERENCE_B;
+                    4'hF    : nextState = NOP;
                     default : nextState = currState;
+                    //? Any other command would stuck here?
                 endcase
+                // the next byte would be read in the next state and it would be ready in the second next state (ST_0)
                 nextProgCtrOffset = 2'b01;
             end
 
         // READ_FROM_MEM
             // READ_FROM_MEM_TO_A: here starts the memory read operational pipeline
-            // wait state, to give time for hte mem address to be read, reg select is set to 0
+            // wait state, to give time for the mem address to be read, reg select is set to 0
             READ_FROM_MEM_TO_A : begin
                 nextState = READ_FROM_MEM_0;
                 nextRegSelect = 1'b0;
             end
 
             // READ_FROM_MEM_TO_B: here starts the memory read operational pipeline
-            // wait state, to give time for hte mem address to be read, reg select is set to 1
+            // wait state, to give time for the mem address to be read, reg select is set to 1
             READ_FROM_MEM_TO_B : begin
                 nextState = READ_FROM_MEM_0;
                 nextRegSelect = 1'b1;
@@ -340,26 +361,116 @@ module Processor(
             end
 
             // Wait state for new prog address to settle
-            DO_MATHS_OPP_0 : nextState = CHOOSE_OPP;
+            DO_MATHS_OPP_0 : begin
+                nextState = CHOOSE_OPP;
+            end
 
 
         // TODO In/Equality
-            // A == B
-            BREQ_ADDR
+            // These operation are based on the ALU output with opcode 1001, 1010, 1011
+            // The output determines whether to branch, 1 for true, 0 for false
+            BRANCH_IN_EQUALITY : begin
+                if (AluOut) begin
+                    nextState = BRANCH_IN_EQUALITY_0;
+                end
+                else begin
+                    nextState = BRANCH_IN_EQUALITY_1;
+                    nextProgCtr = currProgCtr + 2;
+                end
+            end
 
-            // A < B
-            BGTQ_ADDR
+            // Do branch
+            // The address (from second byte of the command)
+            // will be valid during this state, set the branch PC
+            BRANCH_IN_EQUALITY_0 : begin
+                nextState = BRANCH_IN_EQUALITY_0;
+                nextProgCtr = ProgMemoryOut
+            end
 
-            // A > B
-            BLTQ_ADDR
+            // Do branch
+            // Wait state for new prog address to settle
+            BRANCH_IN_EQUALITY_1 : begin
+                nextState = CHOOSE_OPP;
+            end
 
 
-            // TODO Goto ADDR
-            // TODO Goto IDLE
-            // TODO Functrion Call
-            // TODO Function Return
-            // TODO Dereference
+        // TODO Goto ADDR
+            GOTO : begin
+                nextState = GOTO_0;
+                // nextProgCtr = currProgCtr + 2;
+            end
 
+            // The address (from second byte of the command)
+            // will be valid during this state, set goto PC
+            GOTO_0 : begin
+                nextState = GOTO_1;
+                nextProgCtr = ProgMemoryOut;
+            end
+
+            // Wait state for new prog address to settle
+            GOTO_1 : begin
+                next_state = CHOOSE_OPP;
+            end
+
+        // TODO Goto IDLE
+            // Does not care what is read from PC, so no need for wait state
+            GOTO_IDLE : begin
+                nextState = IDLE;
+                // nextProgCtrOffset = 2'h0;
+                nextProgCtr = 8'hFF; // 8'h00
+            end
+
+        // TODO Functrion Call
+            FUNCTION_CALL : begin
+                nextState = GOTO_0; // use goto states to goto addr
+                nextProgContext = currProgCtr + 2; // save address of the next command
+            end
+
+        // TODO Function Return
+            RETURN : begin
+                nextState = RETURN_0;
+                nextProgCtr = currProgContext; // use saved PC address
+            end
+
+            // Wait state for new prog address to settle
+            RETURN_0 : begin
+                nextState = CHOOSE_OPP;
+            end
+
+        // TODO Dereference
+            // Dereference the pointer A to memory, save the value of mem[A] back
+            DE_REERENCE_A : begin
+                nextState = DE_REFERENCE_0;
+                nextBusAddr = currRegA;
+                nextRegSelect = 1'b0;
+            end
+
+            // Dereference the pointer B to memory, save the value of mem[B] back
+            DE_REFERENCE_B : begin
+                nextState = DE_REFERENCE_0;
+                nextBusAddr = currRegB;
+                nextRegSelect = 1'b1;
+            end
+
+            // Wait state, to give time for the mem data to be read
+            // Increment the program counter here
+            //! 2 CLK ahead
+            DE_REFERENCE_0 : begin
+                nextState = READ_FROM_MEM_2;
+                nextProgCtr = currProgCtr + 1;
+            end
+
+        // NOP
+            // Increament of PC by 1
+            //! 2 CLK ahead
+            NOP : begin
+                nextState = NOP_0;
+                nextProgCtr = currProgCtr + 1;
+            end
+
+            NOP_0 : begin
+                nextState = CHOOSE_OPP;
+            end
 
         endcase
     end

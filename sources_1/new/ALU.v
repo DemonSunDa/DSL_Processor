@@ -60,11 +60,11 @@ module ALU(
                 // decrement B - 1
                 4'h8    :   Out <= IN_B - 1'b1;
                 // In/Equality operation
-                // A == B
+                // A == B for BREQ ADDR
                 4'h9    :   Out <= (IN_A == IN_B) ? 8'h01 : 8'h00;
-                // A > B
+                // A > B for BGTQ ADDR
                 4'h10   :   Out <= (IN_A > IN_B) ? 8'h01 : 8'h00;
-                // A < B
+                // A < B for BLTQ ADDR
                 4'h11   :   Out <= (IN_A < IN_B) ? 8'h01 : 8'h00;
                 // Default A
                 default :   Out <= IN_A;
