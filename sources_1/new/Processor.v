@@ -384,7 +384,7 @@ module Processor(
             // will be valid during this state, set the branch PC
             BRANCH_IN_EQUALITY_0 : begin
                 nextState = BRANCH_IN_EQUALITY_0;
-                nextProgCtr = ProgMemoryOut
+                nextProgCtr = ProgMemoryOut;
             end
 
             // Do branch

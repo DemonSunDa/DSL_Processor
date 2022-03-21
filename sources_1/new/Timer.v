@@ -124,7 +124,7 @@ module Timer(
     always @(posedge CLK) begin
         if (RESET) begin
             TargetReached <= 1'b0;
-            LastTime <= 0
+            LastTime <= 0;
         end
         else if ((LastTime + InterruptRate) == Timer) begin
             if (InterruptEnable) begin
@@ -156,6 +156,7 @@ module Timer(
         else begin
             Interrupt <= Interrupt;
         end
+    end
 
     assign BUS_INTERRUPT_RAISE = Interrupt;
 
