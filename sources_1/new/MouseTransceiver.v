@@ -21,19 +21,18 @@
 
 
 module MouseTransceiver (
-    // Standard Inputs
+    // Standard signals
     input CLK,
     input RESET,
-    // IO Mouse
+    // IO mouse
     inout CLK_MOUSE,
     inout DATA_MOUSE,
-    // Mouse Data Information
-    // output [3:0] MouseStatus,
-    // output [7:0] MouseX,
-    // output [7:0] MouseY
-    input SWITCH,
-    output [3:0] DISP_SEL_OUT,
-    output [7:0] DISP_OUT
+    // Mouse info
+    output reg [3:0] MouseStatus,
+    output reg [7:0] MouseX,
+    output reg [7:0] MouseY,
+    output reg [7:0] MouseZ,
+    output SendInterrupt
 );
 
 
@@ -123,7 +122,6 @@ module MouseTransceiver (
     wire [7:0] MouseDxRaw;
     wire [7:0] MouseDyRaw;
     wire [7:0] MouseDzRaw;
-    wire SendInterrupt;
     wire [3:0] MasterStateCode;
     MouseMasterSM MSM (
         // Standard Inputs
@@ -157,10 +155,10 @@ module MouseTransceiver (
     wire signed [8:0] MouseNewY;
     wire signed [8:0] MouseDz;
     wire signed [8:0] MouseNewZ;
-    reg [3:0] MouseStatus;
-    reg [7:0] MouseX;
-    reg [7:0] MouseY;
-    reg [7:0] MouseZ;
+//    reg [3:0] MouseStatus;
+//    reg [7:0] MouseX;
+//    reg [7:0] MouseY;
+//    reg [7:0] MouseZ;
 
     // DX and DY are modified to take account of overflow and direction
     assign MouseDx = (MouseStatusRaw[6]) ? (MouseStatusRaw[4] ? {MouseStatusRaw[4],8'h00} : {MouseStatusRaw[4],8'hFF} ) : {MouseStatusRaw[4],MouseDxRaw[7:0]};
@@ -216,92 +214,5 @@ module MouseTransceiver (
         end
     end
 // Pre-processing
-
-
-// Display Select
-    reg [4:0] dispIN0;
-    reg [4:0] dispIN1;
-    reg [4:0] dispIN2;
-    reg [4:0] dispIN3;
-    always @(posedge CLK or posedge RESET) begin
-        if (RESET) begin
-            dispIN0 <= 11000;
-            dispIN1 <= 11000;
-            dispIN2 <= 11000;
-            dispIN3 <= 11000;
-        end
-        else begin
-            if (SWITCH) begin
-                dispIN0 <= {3'b000, MouseStatusRaw[1]};
-                dispIN1 <= {3'b000, MouseStatusRaw[0]};
-                dispIN2 <= MouseZ[3:0];
-                dispIN3 <= MouseZ[7:4];
-            end
-            else begin
-                dispIN0 <= MouseY[3:0];
-                dispIN1 <= MouseY[7:4];
-                dispIN2 <= MouseX[3:0];
-                dispIN3 <= MouseX[7:4];
-            end
-        end
-    end
-// Display Select
-
-
-// 7 Segment Display
-    wire [4:0] dotBinIn;
-    wire [3:0] segSelOut;
-    wire [7:0] hexOut;
-
-    wire trig_1kHz;
-    wire [16:0] ctr_1kHz;
-    wire trig_strobe;
-    wire [1:0] ctr_strobe;
-
-    Generic_counter # (
-        .CTR_WIDTH(17),
-        .CTR_MAX(99999)
-    )
-    Ctr1kHz (
-        .CLK(CLK),
-        .RESET(RESET),
-        .ENABLE(1'b1),
-        .OUT_TRIG(trig_1kHz),
-        .OUT_CTR(ctr_1kHz)
-    );
-
-    Generic_counter # (
-        .CTR_WIDTH(2),
-        .CTR_MAX(3)
-    )
-    CtrStrobe (
-        .CLK(CLK),
-        .RESET(RESET),
-        .ENABLE(trig_1kHz),
-        .OUT_TRIG(trig_strobe),
-        .OUT_CTR(ctr_strobe)
-    );
-
-    Mux4bit5 Multiplexer (
-        .CONTROL(ctr_strobe),
-        .IN0({1'b0, dispIN0}),
-        .IN1({1'b0, dispIN1}),
-        .IN2({1'b1, dispIN2}),
-        .IN3({1'b0, dispIN3}),
-        .OUT(dotBinIn)
-    );
-
-    Seg7Decoder Disp (
-        .SEG_SELECT_IN(ctr_strobe),
-        .BIN_IN(dotBinIn[3:0]),
-        .DOT_IN(dotBinIn[4]),
-        .SEG_SELECT_OUT(segSelOut),
-        .HEX_OUT(hexOut)
-    );
-// 7 Segment Display
-
-
-    assign DISP_SEL_OUT = segSelOut;
-    assign DISP_OUT = hexOut;
 
 endmodule

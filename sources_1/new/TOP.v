@@ -38,8 +38,8 @@ module TOP(
     wire BUS_WE;
 
     // ROM bus
-    wire ROM_ADDRESS;
-    wire ROM_DATA;
+    wire [7:0] ROM_ADDRESS;
+    wire [7:0] ROM_DATA;
 
     // Interrupt
     wire [1:0] BUS_INTERRUPT_RAISE;
@@ -89,6 +89,22 @@ module TOP(
         // Interrupt signals
         .BUS_INTERRUPT_RAISE(BUS_INTERRUPT_RAISE[1]),
         .BUS_INTERRUPT_ACK(BUS_INTERRUPT_ACK[1])
+    );
+
+    IO_Mouse MOUSE(
+        // Standard signals
+        .CLK(CLK),
+        .RESET(RESET),
+        // Main bus signals
+        .BUS_DATA(BUS_DATA),
+        .BUS_ADDR(BUS_ADDR),
+        .BUS_WE(BUS_WE),
+        // IO mouse
+        .CLK_MOUSE(CLK_MOUSE),
+        .DATA_MOUSE(DATA_MOUSE),
+        // Interrupt signals
+        .BUS_INTERRUPT_RAISE(BUS_INTERRUPT_RAISE[0]),
+        .BUS_INTERRUPT_ACK(BUS_INTERRUPT_ACK[0])
     );
 
 

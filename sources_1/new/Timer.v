@@ -28,11 +28,12 @@ module Timer(
     inout [7:0] BUS_DATA,
     input [7:0] BUS_ADDR,
     input BUS_WE,
+    // Interrupt signals
     output BUS_INTERRUPT_RAISE,
     input BUS_INTERRUPT_ACK
 );
 
-    parameter [7:0] TimerBaseAddr = 8'hF0; // timer base address in the memory map
+    parameter TimerBaseAddr = 8'hF0; // timer base address in the memory map
     parameter InitialInterruptRate = 100; // default interrupt rate leading to 1 interrupt every 100 ms
     parameter InitialInterruptEnable = 1'b1; // by default the interrupt is enabled
 
