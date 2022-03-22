@@ -95,21 +95,24 @@ module IO_Mouse(
 
     // Refresh the stored values every CLK
     always @(posedge CLK) begin
-        InternalMem[0] <= {4'b0, MouseStatus};
-        InternalMem[1] <= MouseX;
-        InternalMem[2] <= MouseY;
-        InternalMem[3] <= MouseZ;
-    
         if ((BUS_ADDR >= MouseBaseAddr) & (BUS_ADDR < MouseBaseAddr + 8'h04)) begin // if mouse addressed
             if (BUS_WE) begin // if CPU writing
                 InternalMem[BUS_ADDR[3:0]] <= BusDataIn; // lower 4 bits of the address
                 IOBusWE <= 1'b0;
             end
             else begin
+                InternalMem[0] <= {4'b0, MouseStatus};
+                InternalMem[1] <= MouseX;
+                InternalMem[2] <= MouseY;
+                InternalMem[3] <= MouseZ;
                 IOBusWE <= 1'b1;
             end
         end
         else begin
+            InternalMem[0] <= InternalMem[0];
+            InternalMem[1] <= InternalMem[1];
+            InternalMem[2] <= InternalMem[2];
+            InternalMem[3] <= InternalMem[3];
             IOBusWE <= 1'b0;
         end
     end

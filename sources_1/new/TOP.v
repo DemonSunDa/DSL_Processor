@@ -91,6 +91,19 @@ module TOP(
         .BUS_INTERRUPT_ACK(BUS_INTERRUPT_ACK[1])
     );
 
+    Seg7Display DISPLAY(
+        // Standard signals
+        .CLK(CLK),
+        .RESET(RESET),
+        // Main bus signals
+        .BUS_DATA(BUS_DATA),
+        .BUS_ADDR(BUS_ADDR),
+        .BUS_WE(BUS_WE),
+        // Display
+        .DISP_SEL_OUT(DISP_SEL_OUT),
+        .DISP_OUT(DISP_OUT)
+    );
+
     IO_Mouse MOUSE(
         // Standard signals
         .CLK(CLK),

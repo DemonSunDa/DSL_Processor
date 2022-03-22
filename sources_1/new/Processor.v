@@ -30,7 +30,7 @@ module Processor(
     output BUS_WE,
     // ROM signals
     output [7:0] ROM_ADDRESS,
-    input ROM_DATA,
+    input [7:0] ROM_DATA,
     // INTERRUPT signals
     input [1:0] BUS_INTERRUPT_RAISE,
     output [1:0] BUS_INTERRUPT_ACK
