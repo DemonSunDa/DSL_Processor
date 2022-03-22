@@ -53,10 +53,10 @@ module Seg7Display(
 
 
     // Display input
-    reg [4:0] dispIN0;
-    reg [4:0] dispIN1;
-    reg [4:0] dispIN2;
-    reg [4:0] dispIN3;
+    reg [3:0] dispIN0;
+    reg [3:0] dispIN1;
+    reg [3:0] dispIN2;
+    reg [3:0] dispIN3;
     always @(posedge CLK) begin
         if (RESET) begin
             dispIN0 <= 1000;
