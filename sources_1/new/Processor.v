@@ -151,8 +151,8 @@ module Processor(
     RETURN =                    8'h80,
     RETURN_0 =                  8'h81,
     // TODO Dereference
-    DE_REFERENCE_A =             8'h90,
-    DE_REFERENCE_B =             8'h91,
+    DE_REFERENCE_A =            8'h90,
+    DE_REFERENCE_B =            8'h91,
     DE_REFERENCE_0 =            8'h92,
 
     // NOP
