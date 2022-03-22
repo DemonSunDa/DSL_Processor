@@ -8,6 +8,11 @@ set_property PACKAGE_PIN U18 [get_ports RESET]
     set_property IOSTANDARD LVCMOS33 [get_ports RESET]
 # reset
 
+# IR
+set_property PACKAGE_PIN G2 [get_ports IR_LED]
+    set_property IOSTANDARD LVCMOS33 [get_ports IR_LED]
+# IR
+
 # PS/2
 set_property PACKAGE_PIN C17 [get_ports CLK_MOUSE]
     set_property IOSTANDARD LVCMOS33 [get_ports CLK_MOUSE]

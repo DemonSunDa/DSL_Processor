@@ -29,7 +29,9 @@ module TOP(
     output [7:0] DISP_OUT,
     // IO Mouse
     inout CLK_MOUSE,
-    inout DATA_MOUSE
+    inout DATA_MOUSE,
+    // IR
+    output IR_LED
 );
 
     // Main bus
@@ -120,5 +122,16 @@ module TOP(
         .BUS_INTERRUPT_ACK(BUS_INTERRUPT_ACK[0])
     );
 
+    IO_IR IR(
+        // Standard signals
+        .CLK(CLK),
+        .RESET(RESET),
+        // Main bus signals
+        .BUS_DATA(BUS_DATA),
+        .BUS_ADDR(BUS_ADDR),
+        .BUS_WE(BUS_WE),
+        // IR
+        .IR_LED(IR_LED)
+    );
 
 endmodule

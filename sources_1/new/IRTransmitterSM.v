@@ -20,7 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module IRTransmitterSM(
+module IRTransmitterSM # (
+    parameter HCYC_PULSE    = 1389 - 1, // 100M / 36K / 2
+    parameter SZ_START      = 191 - 1,
+    parameter SZ_CARSEL     = 47 - 1,
+    parameter SZ_GAP        = 25 - 1,
+    parameter SZ_ASSERT     = 47 - 1,
+    parameter SZ_DEASSERT   = 22 - 1
+)
+(
     // standard signals
     input CLK,
     input RESET,
@@ -32,41 +40,41 @@ module IRTransmitterSM(
 );
 
 
-//////BLUE
-//    parameter HCYC_PULSE    = 1389 - 1; // 100M / 36K / 2
-//    parameter SZ_START      = 191 - 1;
-//    parameter SZ_CARSEL     = 47 - 1;
-//    parameter SZ_GAP        = 25 - 1;
-//    parameter SZ_ASSERT     = 47 - 1;
-//    parameter SZ_DEASSERT   = 22 - 1;
-//////BLUE
+// ////BLUE
+//     parameter HCYC_PULSE    = 1389 - 1; // 100M / 36K / 2
+//     parameter SZ_START      = 191 - 1;
+//     parameter SZ_CARSEL     = 47 - 1;
+//     parameter SZ_GAP        = 25 - 1;
+//     parameter SZ_ASSERT     = 47 - 1;
+//     parameter SZ_DEASSERT   = 22 - 1;
+// ////BLUE
 
-////YELLOW
-    parameter HCYC_PULSE    = 1250 - 1; // 100M / 40K / 2
-    parameter SZ_START      = 88 - 1;
-    parameter SZ_CARSEL     = 22 - 1;
-    parameter SZ_GAP        = 40 - 1;
-    parameter SZ_ASSERT     = 44 - 1;
-    parameter SZ_DEASSERT   = 22 - 1;
-////YELLOW
+// ////YELLOW
+//     parameter HCYC_PULSE    = 1250 - 1; // 100M / 40K / 2
+//     parameter SZ_START      = 88 - 1;
+//     parameter SZ_CARSEL     = 22 - 1;
+//     parameter SZ_GAP        = 40 - 1;
+//     parameter SZ_ASSERT     = 44 - 1;
+//     parameter SZ_DEASSERT   = 22 - 1;
+// ////YELLOW
 
-//////GREEN
-//    parameter HCYC_PULSE    = 1333 - 1; // 100M / 37.5K / 2
-//    parameter SZ_START      = 88 - 1;
-//    parameter SZ_CARSEL     = 44 - 1;
-//    parameter SZ_GAP        = 40 - 1;
-//    parameter SZ_ASSERT     = 44 - 1;
-//    parameter SZ_DEASSERT   = 22 - 1;
-//////GREEN
+// ////GREEN
+//     parameter HCYC_PULSE    = 1333 - 1; // 100M / 37.5K / 2
+//     parameter SZ_START      = 88 - 1;
+//     parameter SZ_CARSEL     = 44 - 1;
+//     parameter SZ_GAP        = 40 - 1;
+//     parameter SZ_ASSERT     = 44 - 1;
+//     parameter SZ_DEASSERT   = 22 - 1;
+// ////GREEN
 
-//////RED
-//    parameter HCYC_PULSE    = 1389 - 1; // 100M / 36K / 2
-//    parameter SZ_START      = 192  - 1;
-//    parameter SZ_CARSEL     = 24 - 1;
-//    parameter SZ_GAP        = 24 - 1;
-//    parameter SZ_ASSERT     = 48 - 1;
-//    parameter SZ_DEASSERT   = 24 - 1;
-//////RED
+// ////RED
+//     parameter HCYC_PULSE    = 1389 - 1; // 100M / 36K / 2
+//     parameter SZ_START      = 192  - 1;
+//     parameter SZ_CARSEL     = 24 - 1;
+//     parameter SZ_GAP        = 24 - 1;
+//     parameter SZ_ASSERT     = 48 - 1;
+//     parameter SZ_DEASSERT   = 24 - 1;
+// ////RED
 
     
     parameter START     = 4'b0000;
