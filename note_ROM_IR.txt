@@ -1,107 +1,119 @@
-F0 // lw A
-5F              // timer counter
-F1 // lw B
-0A              // constant 10
-54 // inc A
-A6 // bgt
-0B              // branch to L12
-F2 // sw A
-5F              // timer counter + 1
-F7 // goto
-62              // XX
-F0 // lw A      // branch to here
-5E              // state counter
-F1 // lw B
+F0  // lw A     // Timer_ISR starts here
+5F              // timer_counter
+F1  // lw B
+0A              // CONSTANT 10
+54  // inc A    // timer_counter ++
+A6  // bgt      // if (timer_counter > 10)
+0B              // branch to X0 L012
+F2  // sw A
+5F              // timer_counter
+F7  // goto
+72              // X+ L115
+F0  // lw A     // branch to here X0 L012
+5E              // COMMAND
+F1  // lw B
 50              // M
-96 // beq
-31              // X1 L50
-F1 // lw B
+96  // beq      // if (COMMAND == M)
+31              // branch to X1 L050
+F1  // lw B
 51              // F
-96 // beq
-38              // X2 L57
-F1 // lw B
+96  // beq      // if (COMMAND == F)
+38              // branch to X2 L057
+F1  // lw B
 52              // B
-96 // beq
-3F              // X3 L64
-F1 // lw B
+96  // beq      // if (COMMAND == B)
+3F              // branch to X3 L064
+F1  // lw B
 55              // FL
-96 // beq
-46              // X4 L71
-F1 // lw B
+96  // beq      // if (COMMAND == FL)
+46              // branch to X4 L071
+F1  // lw B
 58              // BR
-96 // beq
-4D              // X5 L78
-F1 // lw B
+96  // beq      // if (COMMAND == BR)
+4D              // X5 L078
+F1  // lw B
 57              // FR
-96 // beq
-54              // X6 L85
-F1 // lw B
+96  // beq
+54              // X6 L085
+F1  // lw B
 56              // BL
-96 // beq
-5B              // X7 L92
-FF // nop       ////////////////////////////////////////
-F0 // lw A
+96  // beq
+5B              // X7 L092
+FF  // nop      ////////////////////////////////////////
+F0  // lw A
 50              // M
-F2 // sw A
+F2  // sw A
 5E              // state counter
-F7 // goto
-62              // XX L99
-FF // nop       ////////////////////////////////////////
-F0 // lw A      // branch to here X1 L50
+F7  // goto
+62              // XX L099
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X1 L050
 51              // F
-F2 // sw A
+F2  // sw A
 5E              // state counter
-F7 // goto
-62              // XX L99
-FF // nop       ////////////////////////////////////////
-F0 // lw A      // branch to here X2 L
+F7  // goto
+62              // XX L099
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X2 L
 52              // B
-F2 // sw A
+F2  // sw A
 5E              // state counter
-F7 // goto
-62              // XX L99
-FF // nop       ////////////////////////////////////////
-F0 // lw A      // branch to here X3
+F7  // goto
+62              // XX L099
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X3
 55              // FL
-F2 // sw A
+F2  // sw A
 5E              // state counter
-F7 // goto
-62              // XX L99
-FF // nop       ////////////////////////////////////////
-F0 // lw A      // branch to here X4
+F7  // goto
+62              // XX L099
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X4
 58              // BR
-F2 // sw A
+F2  // sw A
 5E              // state counter
-F7 // goto
-62              // XX L99
-FF // nop       ////////////////////////////////////////
-F0 // lw A      // branch to here X5
+F7  // goto
+62              // XX L099
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X5
 57              // FR
-F2 // sw A
+F2  // sw A
 5E              // state counter
-F7 // goto
-62              // XX L99
-FF // nop       ////////////////////////////////////////
-F0 // lw A      // branch to here X6
+F7  // goto
+62              // XX L099
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X6
 56              // BL
-F2 // sw A
+F2  // sw A
 5E              // state counter
-F7 // goto
-62              // XX L99
-FF // nop       ////////////////////////////////////////
-F0 // lw A      // branch to here X7
+F7  // goto
+62              // XX L099
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X7
 51              // F
-F2 // sw A
-5E              // state counter
-F7 // goto
-62              // XX L99
-FF // nop       ////////////////////////////////////////
-F1 // lw B      // goto here XX L99
-5D              // car type holder
-04 // add A
-F2 // sw A
+F2  // sw A
+5E              // COMMAND
+F7  // goto
+62              // XX L099
+FF  // nop      ////////////////////////////////////////
+F1  // lw B     // goto here XX L099
+5D              // CarType
+04  // add A
+F2  // sw A
 90              // IR addr
-F8 // goto IDLE
+F0  // lw A
+00              // CONSTANT 0
+F2  // sw A
+5F              // timer_counter
+F0  // lw A
+7F              // idc_display
+F1  // lw B
+14              // CONSTANT 128
+04  // add A    // idc_display += 128
+F2  // sw A
+7F              // idc_display
+F8  // goto IDLE// goto here X+ L115
+FF  // nop      ////////////////////////////////////////
 FF
 FF
 FF
@@ -114,6 +126,28 @@ FF
 FF
 FF
 FF
+F0  // lw A     // Mouse_ISR starts here
+7F              // idc_display
+F1  // lw B
+18              // CONSTANT 128
+96  // beq
+8C              // branch to L141
+F0  // lw A
+A1              // MouseX
+F1  // lw B
+A2              // MouseY
+F7  // goto
+90              // L145
+F0  // lw A     // branch to here L141
+A0              // MouseStatus
+F1  // lw B
+A3              // MouseZ
+F2  // sw A     // goto here L145
+D0              // left byte
+F3  // sw B
+D1              // right byte
+F8  // goto IDLE
+FF  // nop      ////////////////////////////////////////
 FF
 FF
 FF
@@ -126,16 +160,6 @@ FF
 FF
 FF
 FF
-F0 // lw A      // Mouse_ISR starts here
-A1              // MouseBaseAddr + 1, MouseX
-F1 // lw B
-A2              // MouseBaseAddr + 2, MouseX
-F2 // sw A
-D0              // DisplayBaseAddr + 0, left
-F3 // sw B
-D1              // DisplayBaseAddr + 1, right
-F8 // goto IDLE
-FF // nop       ////////////////////////////////////////
 FF
 FF
 FF
@@ -228,29 +252,5 @@ FF
 FF
 FF
 FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-00
-80 // Mouse_ISR L129
+00  // Timer_ISR L001
+80  // Mouse_ISR L129

@@ -1,256 +1,256 @@
-00
-01
-02
-03
-04
-05
-06
-07
-08
-09
-0A
-0B
-0C
-0D
-0E
-0F
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-80
-40
-20
-10
-A0
-60
-90
-50
-00
-00
-00
-00
-01
-00
-00
-20
-00
-10
-40
-00
-80
-01
-02
-04
-08
-01
-00
-00
-00
-00
-00
-00
-10
-8F
-9F
-00
-10
-67
-77
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-01
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
-00
+00  // 0x00 CONST   0
+01  // 0x01 CONST   1
+02  // 0x02 CONST   2
+03  // 0x03 CONST   3
+04  // 0x04 CONST   4
+05  // 0x05 CONST   5
+06  // 0x06 CONST   6
+07  // 0x07 CONST   7
+08  // 0x08 CONST   8
+09  // 0x09 CONST   9
+0A  // 0x0A CONST   10
+0B  // 0x0B CONST   11
+0C  // 0x0C CONST   12
+0D  // 0x0D CONST   13
+0E  // 0x0E CONST   14
+0F  // 0x0F CONST   15
+00  // 0x10 CONST   0
+10  // 0x11 CONST   16
+20  // 0x12 CONST   32
+30  // 0x13 CONST   48
+40  // 0x14 CONST   64
+50  // 0x15 CONST   80
+60  // 0x16 CONST   96
+70  // 0x17 CONST   112
+80  // 0x18 CONST   128
+90  // 0x19 CONST   144
+A0  // 0x1A CONST   160
+B0  // 0x1B CONST   176
+C0  // 0x1C CONST   192
+D0  // 0x1D CONST   208
+E0  // 0x1E CONST   224
+F0  // 0x1F CONST   240
+00  // 0x20
+00  // 0x21
+00  // 0x22
+00  // 0x23
+00  // 0x24
+00  // 0x25
+00  // 0x26
+00  // 0x27
+00  // 0x28
+00  // 0x29
+00  // 0x2A
+00  // 0x2B
+00  // 0x2C
+00  // 0x2D
+00  // 0x2E
+00  // 0x2F
+00  // 0x30
+00  // 0x31
+00  // 0x32
+00  // 0x33
+00  // 0x34
+00  // 0x35
+00  // 0x36
+00  // 0x37
+00  // 0x38
+00  // 0x39
+00  // 0x3A
+00  // 0x3B
+00  // 0x3C
+00  // 0x3D
+00  // 0x3E
+00  // 0x3F
+00  // 0x40
+00  // 0x41
+00  // 0x42
+00  // 0x43
+00  // 0x44
+00  // 0x45
+00  // 0x46
+00  // 0x47
+00  // 0x48
+00  // 0x49
+00  // 0x4A
+00  // 0x4B
+00  // 0x4C
+00  // 0x4D
+00  // 0x4E
+00  // 0x4F
+00  // 0x50 CONST   middle
+80  // 0x51 CONST   forward
+40  // 0x52 CONST   backward
+20  // 0x53 CONST   left
+10  // 0x54 CONST   right
+A0  // 0x55 CONST   forward_left
+60  // 0x56 CONST   backward_left
+90  // 0x57 CONST   forward_right
+50  // 0x58 CONST   backward_right
+00  // 0x59
+00  // 0x5A
+00  // 0x5B
+00  // 0x5C
+01  // 0x5D VAR     CarType             default to 01 (CarType blue)
+00  // 0x5E VAR     COMMAND
+00  // 0x5F VAR     timer_counter
+20  // 0x60 CONST   CMXL
+00  // 0x61 CONST   CMXM
+10  // 0x62 CONST   CMXR
+40  // 0x63 CONST   CMYB
+00  // 0x64 CONST   CMYM
+80  // 0x65 CONST   CMYF
+01  // 0x66 CONST   CarType             blue
+02  // 0x67 CONST   CarType             yellow
+04  // 0x68 CONST   CarType             green
+08  // 0x69 CONST   CarType             red
+01  // 0x6A CONST   COMMAND : CarType   default to 01 (COMMAND 0000, CarType blue)
+00  // 0x6B
+00  // 0x6C
+00  // 0x6D
+00  // 0x6E
+00  // 0x6F VAR     work_save
+00  // 0x70 CONST
+10  // 0x71 CONST   XLL
+8F  // 0x72 CONST   XLB
+9F  // 0x73 CONST   XHB
+00  // 0x74 CONST   XHL
+10  // 0x75 CONST   YLL
+67  // 0x76 CONST   YLB
+77  // 0x77 CONST   YHB
+00  // 0x78 CONST   YHL
+00  // 0x79
+00  // 0x7A
+00  // 0x7B
+00  // 0x7C
+00  // 0x7D
+00  // 0x7E
+00  // 0x7F VAR     idc_display
+00  // 0x80
+00  // 0x81
+00  // 0x82
+00  // 0x83
+00  // 0x84
+00  // 0x85
+00  // 0x86
+00  // 0x87
+00  // 0x88
+00  // 0x89
+00  // 0x8A
+00  // 0x8B
+00  // 0x8C
+00  // 0x8D
+00  // 0x8E
+00  // 0x8F
+01  // 0x90 REG     IRBaseAddr      default to 01 (COMMAND 0000, CarType blue)
+00  // 0x91
+00  // 0x92
+00  // 0x93
+00  // 0x94
+00  // 0x95
+00  // 0x96
+00  // 0x97
+00  // 0x98
+00  // 0x99
+00  // 0x9A
+00  // 0x9B
+00  // 0x9C
+00  // 0x9D
+00  // 0x9E
+00  // 0x9F
+00  // 0xA0 REG     MouseBaseAddr   MouseStatus
+00  // 0xA1 REG                     MouseX
+00  // 0xA2 REG                     MouseY
+00  // 0xA3 REG                     MouseZ
+00  // 0xA4
+00  // 0xA5
+00  // 0xA6
+00  // 0xA7
+00  // 0xA8
+00  // 0xA9
+00  // 0xAA
+00  // 0xAB
+00  // 0xAC
+00  // 0xAD
+00  // 0xAE
+00  // 0xAF
+00  // 0xB0 REG     VGABaseAddr
+00  // 0xB1
+00  // 0xB2
+00  // 0xB3
+00  // 0xB4
+00  // 0xB5
+00  // 0xB6
+00  // 0xB7
+00  // 0xB8
+00  // 0xB9
+00  // 0xBA
+00  // 0xBB
+00  // 0xBC
+00  // 0xBD
+00  // 0xBE
+00  // 0xBF
+00  // 0xC0 REG     LEDBaseAddr
+00  // 0xC1 REG
+00  // 0xC2
+00  // 0xC3
+00  // 0xC4
+00  // 0xC5
+00  // 0xC6
+00  // 0xC7
+00  // 0xC8
+00  // 0xC9
+00  // 0xCA
+00  // 0xCB
+00  // 0xCC
+00  // 0xCD
+00  // 0xCE
+00  // 0xCF
+00  // 0xD0 REG     DisplayBaseAddr left byte
+00  // 0xD1 REG                     right byte
+00  // 0xD2
+00  // 0xD3
+00  // 0xD4
+00  // 0xD5
+00  // 0xD6
+00  // 0xD7
+00  // 0xD8
+00  // 0xD9
+00  // 0xDA
+00  // 0xDB
+00  // 0xDC
+00  // 0xDD
+00  // 0xDE
+00  // 0xDF
+00  // 0xE0
+00  // 0xE1
+00  // 0xE2
+00  // 0xE3
+00  // 0xE4
+00  // 0xE5
+00  // 0xE6
+00  // 0xE7
+00  // 0xE8
+00  // 0xE9
+00  // 0xEA
+00  // 0xEB
+00  // 0xEC
+00  // 0xED
+00  // 0xEE
+00  // 0xEF
+00  // 0xF0 REG     TimerBaseAddr   current timer value
+00  // 0xF1 REG                     timer interrupt interval
+00  // 0xF2 REG                     timer reset
+00  // 0xF3 REG                     timer interrupt enable
+00  // 0xF4
+00  // 0xF5
+00  // 0xF6
+00  // 0xF7
+00  // 0xF8
+00  // 0xF9
+00  // 0xFA
+00  // 0xFB
+00  // 0xFC
+00  // 0xFD
+00  // 0xFE
+00  // 0xFF
