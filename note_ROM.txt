@@ -1,0 +1,256 @@
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+F0 // lw A      // Mouse_ISR starts here
+A1              // MouseBaseAddr + 1, MouseX
+F1 // lw B
+A2              // MouseBaseAddr + 2, MouseX
+F2 // sw A
+D0              // DisplayBaseAddr + 0, left
+F3 // sw B
+D1              // DisplayBaseAddr + 1, right
+FF // nop       ////////////////////////////////////////
+F0 // lw A
+6A              // IR default
+F2 // sw A
+6F              // IR work
+F0 // lw A
+A1              // MouseX
+F1 // lw B
+71              // Lower bar X, XLB
+A6 // bgt       // if (MouseX > XLB) {branch}
+9C              // branch to L157
+F0 // lw A      // else
+6F              // IR work (00000001)
+F1 // lw B
+60              // CMXL
+04 // add A     // 00000001 + 00100000
+F2 // sw A
+6F              // IR work (00100001)
+F7 // goto
+B0              // L177
+F1 // lw B      // branch to here L157
+72              // Higher bar X, XHB
+A6 // bgt       // if (MouseX > XHB) {branch}
+A9              // branch to L170
+F0 // lw A      // else
+6F              // IR work (00000001)
+F1 // lw B
+61              // CMXM
+04 // add A     // 00000001 + 00000000
+F2 // sw A
+6F              // IR work (00000001)
+F7 // goto
+B0              // L177
+F0 // lw A      // branch to here L 170
+6F              // IR work (00000001)
+F1 // lw B
+62              // CMXR
+04 // add A     // 00000001 + 00010000
+F2 // sw A
+6F              // IR work (00010001)
+FF // nop       // goto here L177 //////////////////////
+F0 // lw A
+6F              // IR work
+F2 // sw A
+6F              // IR work
+F0 // lw A
+A1              // MouseX
+F1 // lw B
+75              // Lower bar Y, YLB
+A6 // bgt       // if (MouseY > YLB) {branch}
+C4              // branch to L197
+F0 // lw A      // else
+6F              // IR work (00000001)
+F1 // lw B
+63              // CMYB
+04 // add A     // 00000001 + 01000000
+F2 // sw A
+6F              // IR work (01000001)
+F7 // goto
+D8              // L217
+F1 // lw B      // branch to here L197
+72              // Higher bar Y, YHB
+A6 // bgt       // if (MouseY > YHB) {branch}
+D1              // branch to L210
+F0 // lw A      // else
+6F              // IR work (00000001)
+F1 // lw B
+64              // CMYM
+04 // add A     // 00000001 + 00000000
+F2 // sw A
+6F              // IR work (00000001)
+F7 // goto
+D8              // L217
+F0 // lw A      // branch to here L210
+6F              // IR work (00000001)
+F1 // lw B
+65              // CMYF
+04 // add A     // 00000001 + 10000000
+F2 // sw A
+6F              // IR work (10000001)
+F0 // lw A      // goto here L217
+6F              // IR work
+F2 // sw A
+90              // IR real
+F8 // goto IDLE
+FF // nop       ////////////////////////////////////////
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+80 // Mouse_ISR L129

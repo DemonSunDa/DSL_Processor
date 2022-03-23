@@ -383,7 +383,7 @@ module Processor(
             // The address (from second byte of the command)
             // will be valid during this state, set the branch PC
             BRANCH_IN_EQUALITY_0 : begin
-                nextState = BRANCH_IN_EQUALITY_0;
+                nextState = BRANCH_IN_EQUALITY_1;
                 nextProgCtr = ProgMemoryOut;
             end
 
