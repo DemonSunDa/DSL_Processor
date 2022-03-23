@@ -105,7 +105,7 @@ module IO_IR(
     SendPacket (
         .CLK(CLK),
         .RESET(RESET),
-        .ENABLE(!idcCarType),
+        .ENABLE(1'b1),
         .OUT_TRIG(SEND_PACKET),
         .OUT_CTR(ctr_sendpacket)
     );
@@ -133,7 +133,7 @@ module IO_IR(
     IR_B (
         // Standard signals
         .CLK(CLK),
-        .RESET(RESET | (!idcCarType) | (!CarType[0])),
+        .RESET(RESET | (!CarType[0])),
         // Bus signals
         .COMMAND(COMMAND),
         .SEND_PACKET(SEND_PACKET),
@@ -152,7 +152,7 @@ module IO_IR(
     IR_Y (
         // Standard signals
         .CLK(CLK),
-        .RESET(RESET | (!idcCarType) | (!CarType[1])),
+        .RESET(RESET | (!CarType[1])),
         // Bus signals
         .COMMAND(COMMAND),
         .SEND_PACKET(SEND_PACKET),
@@ -171,7 +171,7 @@ module IO_IR(
     IR_G (
         // Standard signals
         .CLK(CLK),
-        .RESET(RESET | (!idcCarType) | (!CarType[2])),
+        .RESET(RESET | (!CarType[2])),
         // Bus signals
         .COMMAND(COMMAND),
         .SEND_PACKET(SEND_PACKET),
@@ -190,7 +190,7 @@ module IO_IR(
     IR_R (
         // Standard signals
         .CLK(CLK),
-        .RESET(RESET | (!idcCarType) | (!CarType[3])),
+        .RESET(RESET | (!CarType[3])),
         // Bus signals
         .COMMAND(COMMAND),
         .SEND_PACKET(SEND_PACKET),
