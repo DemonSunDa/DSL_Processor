@@ -28,7 +28,7 @@ with open(fileNameIn, mode = "r", encoding = "UTF-8") as fileIn:
         hexData.append(line[0:2])
 
 with open(fileNameOut, mode = "w", encoding = "UTF-8") as fileOut:
-    for nLine in range(255):
+    for nLine in range(256):
         fileOut.write(hexData[nLine] + "\n")
 
 print("Uncommented file generated.")
