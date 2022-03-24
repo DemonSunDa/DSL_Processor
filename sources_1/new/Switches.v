@@ -47,7 +47,7 @@ module Switches(
 
     // Refresh the stored values every CLK
     always @(posedge CLK) begin
-        if ((BUS_ADDR >= SwitchesBaseAddr) & (BUS_ADDR < SwitchesBaseAddr + 8'h01)) begin // if switches addressed
+        if ((BUS_ADDR >= SwitchesBaseAddr) & (BUS_ADDR < SwitchesBaseAddr + 8'h02)) begin // if switches addressed
             if (BUS_WE) begin // if CPU writing
                 InternalMem[BUS_ADDR[3:0]] <= BusDataIn; // lower 4 bits of the address
                 IOBusWE <= 1'b0;
