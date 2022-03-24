@@ -60,3 +60,53 @@ set_property PACKAGE_PIN U7 [get_ports {DISP_OUT[6]}]
 set_property PACKAGE_PIN V7 [get_ports {DISP_OUT[7]}]
     set_property IOSTANDARD LVCMOS33 [get_ports {DISP_OUT[7]}]
 # display
+
+# LEDs
+set_property PACKAGE_PIN U16 [get_ports {LEDL[0]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDL[0]}]
+
+set_property PACKAGE_PIN E19 [get_ports {LEDL[1]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDL[1]}]
+
+set_property PACKAGE_PIN U19 [get_ports {LEDL[2]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDL[2]}]
+
+set_property PACKAGE_PIN V19 [get_ports {LEDL[3]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDL[3]}]
+
+set_property PACKAGE_PIN W18 [get_ports {LEDL[4]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDL[4]}]
+
+set_property PACKAGE_PIN U15 [get_ports {LEDL[5]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDL[5]}]
+
+set_property PACKAGE_PIN U14 [get_ports {LEDL[6]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDL[6]}]
+
+set_property PACKAGE_PIN V14 [get_ports {LEDL[7]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDL[7]}]
+
+set_property PACKAGE_PIN V13 [get_ports {LEDH[0]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDH[0]}]
+
+set_property PACKAGE_PIN V3 [get_ports {LEDH[1]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDH[1]}]
+
+set_property PACKAGE_PIN W3 [get_ports {LEDH[2]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDH[2]}]
+
+set_property PACKAGE_PIN U3 [get_ports {LEDH[3]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDH[3]}]
+
+set_property PACKAGE_PIN P3 [get_ports {LEDH[4]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDH[4]}]
+
+set_property PACKAGE_PIN N3 [get_ports {LEDH[5]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDH[5]}]
+
+set_property PACKAGE_PIN P1 [get_ports {LEDH[6]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDH[6]}]
+
+set_property PACKAGE_PIN L1 [get_ports {LEDH[7]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {LEDH[7]}]
+# LEDs

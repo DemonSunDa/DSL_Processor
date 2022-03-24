@@ -31,7 +31,10 @@ module TOP(
     inout CLK_MOUSE,
     inout DATA_MOUSE,
     // IR
-    output IR_LED
+    output IR_LED,
+    // LED
+    output [7:0] LEDH,
+    output [7:0] LEDL
 );
 
     // Main bus
@@ -132,6 +135,19 @@ module TOP(
         .BUS_WE(BUS_WE),
         // IR
         .IR_LED(IR_LED)
+    );
+
+    LED LED(
+        // Standard signals
+        .CLK(CLK),
+        .RESET(RESET),
+        // Main bus signals
+        .BUS_DATA(BUS_DATA),
+        .BUS_ADDR(BUS_ADDR),
+        .BUS_WE(BUS_WE),
+        // LED
+        .LEDH(LEDH),
+        .LEDL(LEDL)
     );
 
 endmodule
