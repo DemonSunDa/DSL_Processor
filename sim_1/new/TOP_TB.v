@@ -1,14 +1,14 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: University of Edinburgh
+// Engineer: Dawei Sun
 // 
-// Create Date: 24.03.2022 01:16:20
-// Design Name: 
+// Create Date: 17.03.2022 20:46:59
+// Design Name: Processor
 // Module Name: TOP_TB
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
+// Project Name: DSL
+// Target Devices: Artix-7
+// Tool Versions: Vivado 2015
 // Description: 
 // 
 // Dependencies: 
@@ -33,6 +33,8 @@ module TOP_TB(
     wire IR_LED;
     wire [7:0] LEDH;
     wire [7:0] LEDL;
+    reg [7:0] SWH;
+    reg [7:0] SWL;
 
     TOP uut (
         .CLK(CLK),
@@ -43,7 +45,9 @@ module TOP_TB(
         .DATA_MOUSE(DATA_MOUSE),
         .IR_LED(IR_LED),
         .LEDH(LEDH),
-        .LEDL(LEDL)
+        .LEDL(LEDL),
+        .SWH(SWH),
+        .SWL(SWL)
     );
     
     initial begin
@@ -52,9 +56,10 @@ module TOP_TB(
     end
     
     initial begin
-        RESET = 1;
+        RESET = 1'b1;
+        SWH = 8'h00; // display XY
+        SWL = 8'h01; // car type blue
         
-        #10000
-        RESET = 0;
+        #10000  RESET = 0;
     end
 endmodule
