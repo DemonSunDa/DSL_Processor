@@ -89,7 +89,7 @@ module Timer(
             DownCounter <= 0;
         end
         else begin
-            if (DownCounter == 32'd49999) begin
+            if (DownCounter == 32'd99999) begin
                 DownCounter <= 0;
             end
             else begin
