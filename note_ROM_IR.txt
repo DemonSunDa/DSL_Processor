@@ -99,7 +99,7 @@ F7  // goto
 64              // XX L101
 FF  // nop      ////////////////////////////////////////
 F1  // lw B     // goto here XX L101
-5D              // CarType
+7D              // SWL_hold (CarType)
 04  // add A
 F2  // sw A
 90              // IR addr
@@ -127,10 +127,10 @@ FF
 FF
 FF
 F0  // lw A     // Mouse_ISR starts here
-7D              // SWL_hold
+7E              // SWH_hold
 F1  // lw B
-0A              // CONSTANT 15
-A6  // bgt
+18              // CONSTANT 10000000
+96  // beq
 8C              // branch to L141
 F0  // lw A
 A1              // MouseX
@@ -240,9 +240,9 @@ FF  // nop      // goto here L239
 FF  // nop
 F2  // sw A
 C1              // LEDH
-F0  // lw A
+F1  // lw B
 E1              // SWH
-F2  // sw A
+F3  // sw B
 7E              // LEDH_hold
 F1  // lw B
 E0              // SWL
