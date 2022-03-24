@@ -34,7 +34,10 @@ module TOP(
     output IR_LED,
     // LED
     output [7:0] LEDH,
-    output [7:0] LEDL
+    output [7:0] LEDL,
+    // Switches
+    input [7:0] SWH,
+    input [7:0] SWL
 );
 
     // Main bus
@@ -148,6 +151,19 @@ module TOP(
         // LED
         .LEDH(LEDH),
         .LEDL(LEDL)
+    );
+
+    Switches SW(
+        // Standard signals
+        .CLK(CLK),
+        .RESET(RESET),
+        // Main bus signals
+        .BUS_DATA(BUS_DATA),
+        .BUS_ADDR(BUS_ADDR),
+        .BUS_WE(BUS_WE),
+        // Switches
+        .SWH(SWH),
+        .SWL(SWL)
     );
 
 endmodule
