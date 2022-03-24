@@ -1,102 +1,104 @@
+F8  // goto IDLE
+FF  // nop
 F0  // lw A     // Timer_ISR starts here
 5F              // timer_counter
 F1  // lw B
 0A              // CONSTANT 10
 54  // inc A    // timer_counter ++
 A6  // bgt      // if (timer_counter > 10)
-0B              // branch to X0 L012
+0D              // branch to X0 L014
 F2  // sw A
 5F              // timer_counter
-F7  // goto
-72              // X+ L115
-F0  // lw A     // branch to here X0 L012
+F8  // goto IDLE
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X0 L014
 5E              // COMMAND
 F1  // lw B
 50              // M
 96  // beq      // if (COMMAND == M)
-31              // branch to X1 L050
+33              // branch to X1 L052
 F1  // lw B
 51              // F
 96  // beq      // if (COMMAND == F)
-38              // branch to X2 L057
+3A              // branch to X2 L059
 F1  // lw B
 52              // B
 96  // beq      // if (COMMAND == B)
-3F              // branch to X3 L064
+41              // branch to X3 L066
 F1  // lw B
 55              // FL
 96  // beq      // if (COMMAND == FL)
-46              // branch to X4 L071
+48              // branch to X4 L073
 F1  // lw B
 58              // BR
 96  // beq      // if (COMMAND == BR)
-4D              // X5 L078
+4F              // branch to X5 L080
 F1  // lw B
 57              // FR
-96  // beq
-54              // X6 L085
+96  // beq      // if (COMMAND == FR)
+56              // branch to X6 L087
 F1  // lw B
 56              // BL
-96  // beq
-5B              // X7 L092
+96  // beq      // if (COMMAND == BL)
+5D              // branch to X7 L094
 FF  // nop      ////////////////////////////////////////
 F0  // lw A
 50              // M
 F2  // sw A
-5E              // state counter
+5E              // COMMAND
 F7  // goto
-62              // XX L099
+64              // XX L101
 FF  // nop      ////////////////////////////////////////
-F0  // lw A     // branch to here X1 L050
-51              // F
-F2  // sw A
-5E              // state counter
-F7  // goto
-62              // XX L099
-FF  // nop      ////////////////////////////////////////
-F0  // lw A     // branch to here X2 L
-52              // B
-F2  // sw A
-5E              // state counter
-F7  // goto
-62              // XX L099
-FF  // nop      ////////////////////////////////////////
-F0  // lw A     // branch to here X3
-55              // FL
-F2  // sw A
-5E              // state counter
-F7  // goto
-62              // XX L099
-FF  // nop      ////////////////////////////////////////
-F0  // lw A     // branch to here X4
-58              // BR
-F2  // sw A
-5E              // state counter
-F7  // goto
-62              // XX L099
-FF  // nop      ////////////////////////////////////////
-F0  // lw A     // branch to here X5
-57              // FR
-F2  // sw A
-5E              // state counter
-F7  // goto
-62              // XX L099
-FF  // nop      ////////////////////////////////////////
-F0  // lw A     // branch to here X6
-56              // BL
-F2  // sw A
-5E              // state counter
-F7  // goto
-62              // XX L099
-FF  // nop      ////////////////////////////////////////
-F0  // lw A     // branch to here X7
+F0  // lw A     // branch to here X1 L052
 51              // F
 F2  // sw A
 5E              // COMMAND
 F7  // goto
-62              // XX L099
+64              // XX L101
 FF  // nop      ////////////////////////////////////////
-F1  // lw B     // goto here XX L099
+F0  // lw A     // branch to here X2 L059
+52              // B
+F2  // sw A
+5E              // COMMAND
+F7  // goto
+64              // XX L101
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X3 L066
+55              // FL
+F2  // sw A
+5E              // COMMAND
+F7  // goto
+64              // XX L101
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X4 L073
+58              // BR
+F2  // sw A
+5E              // COMMAND
+F7  // goto
+64              // XX L101
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X5 L080
+57              // FR
+F2  // sw A
+5E              // COMMAND
+F7  // goto
+64              // XX L101
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X6 L087
+56              // BL
+F2  // sw A
+5E              // COMMAND
+F7  // goto
+64              // XX L101
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here X7 L094
+51              // F
+F2  // sw A
+5E              // COMMAND
+F7  // goto
+64              // XX L101
+FF  // nop      ////////////////////////////////////////
+F1  // lw B     // goto here XX L101
 5D              // CarType
 04  // add A
 F2  // sw A
@@ -105,19 +107,17 @@ F0  // lw A
 00              // CONSTANT 0
 F2  // sw A
 5F              // timer_counter
-F0  // lw A
-7F              // idc_display
+70  // lw A
+C1              // LEDH
+54  // inc A
+F1  // sw A
+C1              // LEDH
 F1  // lw B
-14              // CONSTANT 128
-04  // add A    // idc_display += 128
-F2  // sw A
-7F              // idc_display
-F8  // goto IDLE// goto here X+ L115
+00              // CONSTANT 0
+F3  // sw B
+C0              // LEDL
+F8  // goto IDLE
 FF  // nop      ////////////////////////////////////////
-FF
-FF
-FF
-FF
 FF
 FF
 FF
@@ -129,8 +129,8 @@ FF
 F0  // lw A     // Mouse_ISR starts here
 7F              // idc_display
 F1  // lw B
-18              // CONSTANT 128
-96  // beq
+17              // CONSTANT 128
+A6  // bgt
 8C              // branch to L141
 F0  // lw A
 A1              // MouseX
@@ -251,6 +251,6 @@ FF
 FF
 FF
 FF
-FF
-00  // Timer_ISR L001
+F8  // goto IDLE
+02  // Timer_ISR L001
 80  // Mouse_ISR L129
