@@ -35,19 +35,21 @@ module Seg7Display(
 
     parameter DisplayBaseAddr = 8'hD0; // 7seg base address in the memory map
 
-    reg [7:0] MouseX;
-    reg [7:0] MouseY;
+    reg [7:0] DispL;
+    reg [7:0] DispR;
 
     always @(posedge CLK) begin
         if ((BUS_ADDR == DisplayBaseAddr) & BUS_WE) begin // writing to MouseX value
-            MouseX <= BUS_DATA;
+            DispL <= BUS_DATA;
+            DispR <= DispR;
         end
         else if ((BUS_ADDR == DisplayBaseAddr + 8'h01) & BUS_WE) begin // writing to MouseY value
-            MouseY <= BUS_DATA;
+            DispL <= DispL;
+            DispR <= BUS_DATA;
         end
         else begin
-            MouseX <= MouseX;
-            MouseY <= MouseY;
+            DispL <= DispL;
+            DispR <= DispR;
         end
     end
 
@@ -65,10 +67,10 @@ module Seg7Display(
             dispIN3 <= 1000;
         end
         else begin
-            dispIN0 <= MouseY[3:0];
-            dispIN1 <= MouseY[7:4];
-            dispIN2 <= MouseX[3:0];
-            dispIN3 <= MouseX[7:4];
+            dispIN0 <= DispR[3:0];
+            dispIN1 <= DispR[7:4];
+            dispIN2 <= DispL[3:0];
+            dispIN3 <= DispL[7:4];
         end
     end
 // Display input
