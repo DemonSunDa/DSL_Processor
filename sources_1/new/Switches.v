@@ -53,14 +53,14 @@ module Switches(
                 IOBusWE <= 1'b0;
             end
             else begin
-                InternalMem[0] <= SWL;
-                InternalMem[1] <= SWH;
+                InternalMem[0] <= InternalMem[0];
+                InternalMem[1] <= InternalMem[1];
                 IOBusWE <= 1'b1;
             end
         end
         else begin
-            InternalMem[0] <= InternalMem[0];
-            InternalMem[1] <= InternalMem[1];
+            InternalMem[0] <= SWL;
+            InternalMem[1] <= SWH;
             IOBusWE <= 1'b0;
         end
     end
