@@ -124,10 +124,10 @@ A0  // 0x55 CONST   forward_left
 00  // 0x7B
 00  // 0x7C
 00  // 0x7D
-00  // 0x7E
+00  // 0x7E VAR     strobe_counter
 00  // 0x7F VAR     idc_display
-00  // 0x80
-00  // 0x81
+00  // 0x80 ////////////////////////////////////////////////////////////////////////////////
+00  // 0x81 From this point on are addresses of REG rather than actual memory
 00  // 0x82
 00  // 0x83
 00  // 0x84
@@ -142,7 +142,7 @@ A0  // 0x55 CONST   forward_left
 00  // 0x8D
 00  // 0x8E
 00  // 0x8F
-01  // 0x90 REG     IRBaseAddr      default to 01 (COMMAND 0000, CarType blue)
+00  // 0x90 REG     IRBaseAddr
 00  // 0x91
 00  // 0x92
 00  // 0x93
@@ -253,4 +253,4 @@ A0  // 0x55 CONST   forward_left
 00  // 0xFC
 00  // 0xFD
 00  // 0xFE
-FD  // 0xFF
+00  // 0xFF
