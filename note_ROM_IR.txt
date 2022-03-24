@@ -9,8 +9,8 @@ A6  // bgt      // if (timer_counter > 10)
 0D              // branch to X0 L014
 F2  // sw A
 5F              // timer_counter
-F8  // goto IDLE
-FF  // nop      ////////////////////////////////////////
+F7  // goto
+EF              // L239 ////////////////////////////////
 F0  // lw A     // branch to here X0 L014
 5E              // COMMAND
 F1  // lw B
@@ -107,15 +107,6 @@ F0  // lw A
 00              // CONSTANT 0
 F2  // sw A
 5F              // timer_counter
-70  // lw A
-C1              // LEDH
-54  // inc A
-F1  // sw A
-C1              // LEDH
-F1  // lw B
-00              // CONSTANT 0
-F3  // sw B
-C0              // LEDL
 F8  // goto IDLE
 FF  // nop      ////////////////////////////////////////
 FF
@@ -126,10 +117,19 @@ FF
 FF
 FF
 FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
 F0  // lw A     // Mouse_ISR starts here
-7F              // idc_display
+7D              // SWL_hold
 F1  // lw B
-17              // CONSTANT 128
+0A              // CONSTANT 15
 A6  // bgt
 8C              // branch to L141
 F0  // lw A
@@ -236,21 +236,21 @@ FF
 FF
 FF
 FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
+FF  // nop      // goto here L239
+FF  // nop
+F2  // sw A
+C1              // LEDH
+F0  // lw A
+E1              // SWH
+F2  // sw A
+7E              // LEDH_hold
+F1  // lw B
+E0              // SWL
+F3  // sw B
+7D              // SWL_hold
+F3  // sw B
+C0              // LEDL
 F8  // goto IDLE
-02  // Timer_ISR L001
+FF  // nop
+02  // Timer_ISR L003
 80  // Mouse_ISR L129

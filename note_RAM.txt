@@ -123,9 +123,9 @@ A0  // 0x55 CONST   forward_left
 00  // 0x7A
 00  // 0x7B
 00  // 0x7C
-00  // 0x7D
-00  // 0x7E VAR     strobe_counter
-00  // 0x7F VAR     idc_display
+00  // 0x7D VAR     SWL_hold
+00  // 0x7E VAR     SWH_hold
+00  // 0x7F VAR     strobe_counter
 00  // 0x80 ////////////////////////////////////////////////////////////////////////////////
 00  // 0x81 From this point on are addresses of REG rather than actual memory
 00  // 0x82
