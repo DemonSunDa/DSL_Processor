@@ -1,0 +1,256 @@
+F8  // goto IDLE
+FF  // nop
+F0  // lw A     // Timer_ISR starts here
+5F              // timer_counter
+F1  // lw B
+0A              // CONSTANT 10
+54  // inc A    // timer_counter ++
+A6  // bgt      // if (timer_counter > 10)
+62              // branch to XX L099
+F2  // sw A
+5F              // timer_counter
+F8  // goto IDLE
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF  // nop      ////////////////////////////////////////
+F0  // lw A     // branch to here XX L099
+00              // CONSTANT 0
+F2  // sw A
+5F              // timer_counter
+70  // lw A
+C1              // LEDH
+54  // inc A
+F1  // sw A
+C1              // LEDH
+F1  // lw B
+00              // CONSTANT 0
+F3  // sw B
+C0              // LEDL
+F8  // goto IDLE
+FF  // nop      ////////////////////////////////////////
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+F0  // lw A     // Mouse_ISR starts here
+7F              // idc_display
+F1  // lw B
+17              // CONSTANT 128
+A6  // bgt
+8C              // branch to L141
+F0  // lw A
+A1              // MouseX
+F1  // lw B
+A2              // MouseY
+F7  // goto
+90              // L145
+F0  // lw A     // branch to here L141
+A0              // MouseStatus
+F1  // lw B
+A3              // MouseZ
+F2  // sw A     // goto here L145
+D0              // left byte
+F3  // sw B
+D1              // right byte
+F8  // goto IDLE
+FF  // nop      ////////////////////////////////////////
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF  // nop      // goto here L239
+FF  // nop
+F2  // sw A
+C1              // LEDH
+F1  // lw B
+E1              // SWH
+F3  // sw B
+7E              // LEDH_hold
+F1  // lw B
+E0              // SWL
+F3  // sw B
+7D              // SWL_hold
+F3  // sw B
+C0              // LEDL
+F8  // goto IDLE
+FF  // nop
+02  // Timer_ISR L003
+80  // Mouse_ISR L129
