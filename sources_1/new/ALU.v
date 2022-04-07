@@ -63,9 +63,17 @@ module ALU(
                 // A == B for BREQ ADDR
                 4'h9    :   Out <= (IN_A == IN_B) ? 8'h01 : 8'h00;
                 // A > B for BGTQ ADDR
-                4'hA   :    Out <= (IN_A > IN_B) ? 8'h01 : 8'h00;
+                4'hA    :   Out <= (IN_A > IN_B) ? 8'h01 : 8'h00;
                 // A < B for BLTQ ADDR
-                4'hB   :    Out <= (IN_A < IN_B) ? 8'h01 : 8'h00;
+                4'hB    :   Out <= (IN_A < IN_B) ? 8'h01 : 8'h00;
+                // NOT A
+                4'hC    :   Out <= ~IN_A;
+                // NOT B
+                4'hD    :   Out <= ~IN_B;
+                // AND A, B
+                4'hE    :   Out <= IN_A & IN_B;
+                // OR A, B
+                4'hF    :   Out <= IN_A | IN_B;
                 // Default A
                 default :   Out <= IN_A;
             endcase
