@@ -8,10 +8,10 @@ F1  // lw B
 F4  // A = A | B
 F2  // sw A
 7E              // LEDL_hold
+F2  // sw A
+90              // IR addr
 F7  // goto
 73              // L116 end of Timer_ISR
-FF
-FF
 FF
 FF
 FF
@@ -165,61 +165,61 @@ D0              // left byte
 F3  // sw B
 D1              // right byte //////////////////////////
 F0  // lw A
-65              // CMYF
+00              // CONSTANT 0
 F2  // sw A
+6F              // work_save
+F0  // lw A
+7A              // MouseX_hold
+F1  // lw B
+71              // XLB
+B6  // blt      // if (X < XLB)
+BC              // branch to L189
+F1  // lw B
+72              // XHB
+B6  // blt      // else if (X < XHB)
+B8              // branch to L185
+F0  // lw A     // else
+62              // CMXR
+F7  // goto
+BE              // L191
+F0  // lw A     // branch to here L185
+61              // CMXM
+F7  // goto
+BE              // L191
+F0  // lw A     // branch to here L189
+60              // CMXL
+F1  // lw B     // goto here L191
+6F              // work_save
+F5  // B = A | B
+F3  // sw B
+6F              // work_save ///////////////////////////
+F0  // lw A
+7B              // MouseY_hold
+F1  // lw B
+75              // YLB
+B6  // blt      // if (Y < YLB)
+D5              // branch to L214
+F1  // lw B
+76              // YHB
+B6  // blt      // else if (Y < YHB)
+D1              // branch to L210
+F0  // lw A     // else
+65              // CMYF
+F7  // goto
+D7              // L216
+F0  // lw A     // branch to here L210
+64              // CMYM
+F7  // goto
+D7              // L216
+F0  // lw A     // branch to here L214
+63              // CMYB
+F1  // lw B     // goto here L216
+6F              // work_save
+F5  // B = A | B
+F3  // sw B
 6F              // work_save
 F8  // goto IDLE
 FF  // nop      ////////////////////////////////////////
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
 FF
 FF
 FF
