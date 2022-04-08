@@ -10,7 +10,7 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      7-segment display decoder module.
 // Dependencies: 
 // 
 // Revision:

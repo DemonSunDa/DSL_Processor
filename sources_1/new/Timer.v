@@ -10,7 +10,12 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      Timer module interracting with main bus.
+//      Addressed at    0xF0    reports current timer value
+//                      0xF1    address of a timer interrupt interval register, 100 ms by default
+//                      0xF2    resets the timer, restart counting from zero
+//                      0xF3    address of an interrupt enable register, allows the microprocessor to disable the timer
+//      With an interrupt interface INTERRUPT[1].
 // Dependencies: 
 // 
 // Revision:

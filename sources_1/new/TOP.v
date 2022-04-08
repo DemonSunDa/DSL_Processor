@@ -10,9 +10,33 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      Top module of the whole architecture.
+//      INOUT   Mouse
+//      INPUT   Switches
+//      OUTPUT  IR
+//      OUTPUT  7-segment display
+//      OUTPUT  LEDs
 // Dependencies: 
-// 
+//      Processor.v
+//          ALU.v
+//      RAM.v
+//      ROM.v
+//      Timer.v
+//      Seg7Display.v
+//          Generic_counter.v
+//          Mux4bit5.v
+//          Seg7Decoder.v
+//      IO_Mouse.v
+//          MouseTransceiver.v
+//              MouseTransmitter.v
+//              MouseReceiver.v
+//              MouseMasterSM.v
+//      IR_IO.v
+//          Generic_counter.v
+//          IRTransmitterSM.v
+//              Generic_counter.v
+//      LED.v
+//      Switches.v
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:

@@ -10,7 +10,10 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      Switch module interracting with main bus.
+//      Input device.
+//      Addressed at    0xE0    lower byte
+//                      0xE1    higher byte
 // Dependencies: 
 // 
 // Revision:

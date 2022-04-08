@@ -10,7 +10,7 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      Multiplexer module with 4 5-bits wide input and a 2-bits control.
 // Dependencies: 
 // 
 // Revision:

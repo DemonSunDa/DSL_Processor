@@ -10,7 +10,8 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-//
+//      Mouse trnasmitter module.
+//      Interracts with mouse master state machine.
 // Dependencies: 
 //
 // Revision: 

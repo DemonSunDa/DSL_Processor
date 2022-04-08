@@ -10,9 +10,11 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      Top level of mouse module.
 // Dependencies: 
-// 
+//      MouseTransmitter.v
+//      MouseReceiver.v
+//      MouseMasterSM.v
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:

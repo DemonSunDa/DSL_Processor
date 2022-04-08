@@ -10,9 +10,18 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      Wrapping up the mouse module interracting with main bus.
+//      Input device.
+//      Addressed at    0xA0    status
+//                      0xA1    X
+//                      0xA2    Y
+//                      0xA3    Z
+//      With a interrupt interface INTERRUPT[0].
 // Dependencies: 
-// 
+//      MouseTransceiver.v
+//          MouseTransmitter.v
+//          MouseReceiver.v
+//          MouseMasterSM.v
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:

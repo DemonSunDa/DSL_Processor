@@ -10,7 +10,10 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      LED module interracting with main bus.
+//      Output device.
+//      Addressed at    0xC0    lower byte
+//                      0xC1    higher byte
 // Dependencies: 
 // 
 // Revision:

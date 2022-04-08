@@ -10,9 +10,14 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      Top level of IR transmitter module interracting with main bus.
+//      Output device.
+//      Addressed at    0x90
+//      Instantiates 4 transmitters to generate different signal for different car type on demand.
 // Dependencies: 
-// 
+//      Generic_counter.v
+//      IRTransmitterSM.v
+//          Generic_counter.v
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:

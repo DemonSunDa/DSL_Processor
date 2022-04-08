@@ -10,9 +10,12 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
-// Dependencies: 
-// 
+//      Main processor with Harvard structure.
+//      Connecting to ROM with seperate address and data lines.
+//      Connecting to other modules with an 8-bit address bus and an 8-bit data bus.
+//      With two individual interrupt flags and acknowledgements.
+// Dependencies:
+//      ALU.v
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:

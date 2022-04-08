@@ -10,9 +10,11 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      Top level of 7-segment display module interracting with main bus.
 // Dependencies: 
-// 
+//      Generic_counter.v
+//      Mux4bit5.v
+//      Seg7Decoder.v
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:

@@ -10,7 +10,9 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      A parameterised counter, with an enable bit.
+//      Outputing a pulse signal when done.
+//      As well as a continuos counter.
 // Dependencies: 
 // 
 // Revision:

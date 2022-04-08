@@ -10,7 +10,11 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-//
+//      Mouse master state machine.
+//      Interracts with mouse transmitter and mouse receiver modules.
+//      Initialise a mouse with Intellimouse mode.
+//      Reactive receiving information from mouse.
+//      Raises an interrupt flag on bytes received.
 // Dependencies: 
 //
 // Revision: 

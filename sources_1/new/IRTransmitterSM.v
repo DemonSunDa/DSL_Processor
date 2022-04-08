@@ -10,9 +10,10 @@
 // Target Devices: Artix-7
 // Tool Versions: Vivado 2015
 // Description: 
-// 
+//      A parameterised IR trnsmitter module.
+//      Default to generate BLUE car type signal.
 // Dependencies: 
-// 
+//      Generic_counter.v
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
