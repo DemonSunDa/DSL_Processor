@@ -1,131 +1,131 @@
 F8  // goto IDLE
 FF  // nop
-F0  // lw A     // Timer_ISR starts here
+FF              // Timer_ISR starts here
+F7  // goto
+75              // L118 end of Timer_ISR
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+F0  // lw A     // branch to here L112
+00              // CONSTANT 0
+F2  // sw A
+5F              // timer_counter
+F7  // goto
+F0              // L241 set LED ////////////////////////
+F0  // lw A     // goto here L118 when ending Timer_ISR
 5F              // timer_counter
 F1  // lw B
-0A              // CONSTANT 10
+09              // CONSTANT 9
 54  // inc A    // timer_counter ++
-A6  // bgt      // if (timer_counter > 10)
-62              // branch to XX L099
+A6  // bgt      // if (timer_counter > 9)
+6F              // branch to L112
 F2  // sw A
 5F              // timer_counter
-F8  // goto IDLE
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF  // nop      ////////////////////////////////////////
-F0  // lw A     // branch to here XX L099
-00              // CONSTANT 0
-F2  // sw A
-5F              // timer_counter
-70  // lw A
-C1              // LEDH
-54  // inc A
-F1  // sw A
-C1              // LEDH
-F1  // lw B
-00              // CONSTANT 0
-F3  // sw B
-C0              // LEDL
-F8  // goto IDLE
-FF  // nop      ////////////////////////////////////////
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
+F7  // goto
+F0              // L241 set LED ////////////////////////
 F0  // lw A     // Mouse_ISR starts here
 7F              // idc_display
 F1  // lw B
@@ -236,9 +236,9 @@ FF
 FF
 FF
 FF
-FF  // nop      // goto here L239
-FF  // nop
-F2  // sw A
+FF
+FF
+F2  // sw A     // goto here L241 set LED
 C1              // LEDH
 F1  // lw B
 E1              // SWH
