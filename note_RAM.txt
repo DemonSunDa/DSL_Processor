@@ -111,12 +111,12 @@ A0  // 0x55 CONST   forward_left
 00  // 0x6E
 00  // 0x6F VAR     work_save
 00  // 0x70 CONST   XLL
-10  // 0x71 CONST   XLB
-8F  // 0x72 CONST   XHB
+34  // 0x71 CONST   XLB
+6A  // 0x72 CONST   XHB
 9F  // 0x73 CONST   XHL
 00  // 0x74 CONST   YLL
-10  // 0x75 CONST   YLB
-67  // 0x76 CONST   YHB
+27  // 0x75 CONST   YLB
+4F  // 0x76 CONST   YHB
 77  // 0x77 CONST   YHL
 00  // 0x78 
 00  // 0x79
