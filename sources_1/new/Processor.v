@@ -166,7 +166,7 @@ module Processor(
     // Sequential SM
     reg [7:0] currState, nextState;
 
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             currState =         8'h00;
             currProgCtr =       8'h00;

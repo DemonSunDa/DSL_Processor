@@ -61,7 +61,7 @@ module Seg7Display(
     reg [3:0] dispIN1;
     reg [3:0] dispIN2;
     reg [3:0] dispIN3;
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             dispIN0 <= 1000;
             dispIN1 <= 1000;

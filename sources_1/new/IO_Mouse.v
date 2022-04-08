@@ -82,7 +82,7 @@ module IO_Mouse(
     // Clock the interrupt
     reg Interrupt;
 
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             Interrupt <= 1'b1;
         end

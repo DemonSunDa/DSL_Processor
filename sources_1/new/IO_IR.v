@@ -81,7 +81,7 @@ module IO_IR(
     wire [3:0] CarType;
     wire idcCarType;
 
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             BusDataIn <= 8'h01; // Default to COMMAND 0000, CarType 0001
         end
@@ -204,7 +204,7 @@ module IO_IR(
     );
 
 
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             IR_LED <= 1'b0;
         end

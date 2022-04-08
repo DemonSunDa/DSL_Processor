@@ -38,7 +38,7 @@ module LED(
 
     parameter LEDBaseAddr = 8'hC0;
 
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             LEDH <= 8'h00;
             LEDL <= 8'hF0;

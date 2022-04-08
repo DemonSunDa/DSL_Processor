@@ -56,7 +56,7 @@ module Timer(
     // also be set by the processor by writing to mem addrress BaseAddr + 1
     reg [7:0] InterruptRate;
 
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             InterruptRate <= InitialInterruptRate;
         end
@@ -73,7 +73,7 @@ module Timer(
     // Interrupt enable configuration - If this is not set to 1, no interrupts will be created
     reg InterruptEnable;
 
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             InterruptEnable <= InitialInterruptEnable;
         end
@@ -89,7 +89,7 @@ module Timer(
 
     // First lower the clock speed from 100 MHz to 1 KHz (1ms period)
     reg [31:0] DownCounter;
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             DownCounter <= 0;
         end
@@ -109,7 +109,7 @@ module Timer(
     // 1ms counter (Timer)
     reg [31:0] Timer;
 
-    always @ (posedge CLK) begin
+    always @ (posedge CLK or posedge RESET) begin
         if (RESET | (BUS_ADDR == TimerBaseAddr + 8'h02)) begin
             Timer <= 0;
         end
@@ -127,7 +127,7 @@ module Timer(
     reg TargetReached;
     reg [31:0] LastTime;
 
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             TargetReached <= 1'b0;
             LastTime <= 0;
@@ -149,7 +149,7 @@ module Timer(
     // Broadcast the interrupt
     reg Interrupt;
 
-    always @(posedge CLK) begin
+    always @(posedge CLK or posedge RESET) begin
         if (RESET) begin
             Interrupt <= 1'b0;
         end

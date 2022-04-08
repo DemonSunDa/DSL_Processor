@@ -49,22 +49,29 @@ module Switches(
     reg [7:0] InternalMem[1:0]; // 2 bytes
 
     // Refresh the stored values every CLK
-    always @(posedge CLK) begin
-        if ((BUS_ADDR >= SwitchesBaseAddr) & (BUS_ADDR < SwitchesBaseAddr + 8'h02)) begin // if switches addressed
-            if (BUS_WE) begin // if CPU writing
-                InternalMem[BUS_ADDR[3:0]] <= BusDataIn; // lower 4 bits of the address
-                IOBusWE <= 1'b0;
-            end
-            else begin
-                InternalMem[0] <= InternalMem[0];
-                InternalMem[1] <= InternalMem[1];
-                IOBusWE <= 1'b1;
-            end
+    always @(posedge CLK or posedge RESET) begin
+        if (RESET) begin
+            InternalMem[0] <= 8'h00;
+            InternalMem[1] <= 8'h00;
+            IOBusWE <= 1'b0;
         end
         else begin
-            InternalMem[0] <= SWL;
-            InternalMem[1] <= SWH;
-            IOBusWE <= 1'b0;
+            if ((BUS_ADDR >= SwitchesBaseAddr) & (BUS_ADDR < SwitchesBaseAddr + 8'h02)) begin // if switches addressed
+                if (BUS_WE) begin // if CPU writing
+                    InternalMem[BUS_ADDR[3:0]] <= BusDataIn; // lower 4 bits of the address
+                    IOBusWE <= 1'b0;
+                end
+                else begin
+                    InternalMem[0] <= InternalMem[0];
+                    InternalMem[1] <= InternalMem[1];
+                    IOBusWE <= 1'b1;
+                end
+            end
+            else begin
+                InternalMem[0] <= SWL;
+                InternalMem[1] <= SWH;
+                IOBusWE <= 1'b0;
+            end
         end
     end
 
