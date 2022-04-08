@@ -127,10 +127,10 @@ F2  // sw A
 F7  // goto
 F0              // L241 set LED ////////////////////////
 F0  // lw A     // Mouse_ISR starts here
-7F              // idc_display
+7D              // SWH_hold
 F1  // lw B
-17              // CONSTANT 128
-A6  // bgt
+18              // CONSTANT b10000000
+96  // beq
 8C              // branch to L141
 F0  // lw A
 A1              // MouseX
@@ -145,27 +145,27 @@ A3              // MouseZ
 F2  // sw A     // goto here L145
 D0              // left byte
 F3  // sw B
-D1              // right byte
+D1              // right byte //////////////////////////
+F0  // lw A
+73              // XHL h9F
+F1  // lw B
+A1              // MouseX
+F3  // sw B
+7A              // MouseX_hold
+15  // B = A - B
+F3  // sw B
+78              // MouseX_flip
+F0  // lw A
+77              // YHL h77
+F1  // lw B
+A2              // MouseY
+F3  // sw B
+7B              // MouseY_hold
+15  // B = A - B
+F3  // sw B
+79              // MouseY_flip
 F8  // goto IDLE
 FF  // nop      ////////////////////////////////////////
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
 FF
 FF
 FF
@@ -243,11 +243,11 @@ C1              // LEDH
 F1  // lw B
 E1              // SWH
 F3  // sw B
-7E              // LEDH_hold
+7D              // SWH_hold
 F1  // lw B
 E0              // SWL
 F3  // sw B
-7D              // SWL_hold
+7C              // SWL_hold
 F3  // sw B
 C0              // LEDL
 F8  // goto IDLE
