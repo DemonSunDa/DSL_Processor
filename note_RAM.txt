@@ -118,14 +118,14 @@ A0  // 0x55 CONST   forward_left
 27  // 0x75 CONST   YLB
 4F  // 0x76 CONST   YHB
 77  // 0x77 CONST   YHL
-00  // 0x78 
-00  // 0x79
-00  // 0x7A
-00  // 0x7B
-00  // 0x7C
-00  // 0x7D VAR     SWL_hold
-00  // 0x7E VAR     SWH_hold
-00  // 0x7F VAR     strobe_counter
+00  // 0x78 VAR     MouseX_flip
+00  // 0x79 VAR     MouseY_flip
+00  // 0x7A VAR     MouseX_hold
+00  // 0x7B VAR     MouseY_hold
+00  // 0x7C VAR     SWL_hold
+00  // 0x7D VAR     SWH_hold
+00  // 0x7E VAR     LEDL_hold
+00  // 0x7F VAR     LEDH_hold
 00  // 0x80 ////////////////////////////////////////////////////////////////////////////////
 00  // 0x81 From this point on are addresses of REG rather than actual memory
 00  // 0x82
@@ -222,8 +222,8 @@ A0  // 0x55 CONST   forward_left
 00  // 0xDD
 00  // 0xDE
 00  // 0xDF
-00  // 0xE0
-00  // 0xE1
+00  // 0xE0 REG     SwitchBaseAddr  SWL
+00  // 0xE1                         SWH
 00  // 0xE2
 00  // 0xE3
 00  // 0xE4
