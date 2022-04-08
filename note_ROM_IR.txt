@@ -10,7 +10,7 @@ A6  // bgt      // if (timer_counter > 10)
 F2  // sw A
 5F              // timer_counter
 F7  // goto
-EF              // L239 ////////////////////////////////
+EE              // L239 ////////////////////////////////
 F0  // lw A     // branch to here X0 L014
 5E              // COMMAND
 F1  // lw B
@@ -99,18 +99,18 @@ F7  // goto
 64              // XX L101
 FF  // nop      ////////////////////////////////////////
 F1  // lw B     // goto here XX L101
-7D              // SWL_hold (CarType)
-04  // add A
+7C              // SWL_hold (CarType)
+F4  // A = A | B
 F2  // sw A
 90              // IR addr
+F2  // sw A
+7E              // LEDL_hold
 F0  // lw A
 00              // CONSTANT 0
 F2  // sw A
 5F              // timer_counter
-F8  // goto IDLE
-FF  // nop      ////////////////////////////////////////
-FF
-FF
+F7  // goto
+EE              // L239 ////////////////////////////////
 FF
 FF
 FF
@@ -127,7 +127,7 @@ FF
 FF
 FF
 F0  // lw A     // Mouse_ISR starts here
-7E              // SWH_hold
+7D              // SWH_hold
 F1  // lw B
 18              // CONSTANT 10000000
 96  // beq
@@ -236,18 +236,18 @@ FF
 FF
 FF
 FF
-FF  // nop      // goto here L239
-FF  // nop
-F2  // sw A
+F2  // sw A     // goto here L239
 C1              // LEDH
 F1  // lw B
 E1              // SWH
 F3  // sw B
-7E              // LEDH_hold
+7D              // SWH_hold
 F1  // lw B
 E0              // SWL
 F3  // sw B
-7D              // SWL_hold
+7C              // SWL_hold
+F1  // lw B
+7E              // LEDL_hold
 F3  // sw B
 C0              // LEDL
 F8  // goto IDLE
