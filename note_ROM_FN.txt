@@ -1,131 +1,131 @@
 F8  // goto IDLE
 FF  // nop
 FF              // Timer_ISR starts here
-F7  // goto
-75              // L118 end of Timer_ISR
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-F0  // lw A     // branch to here L112
-00              // CONSTANT 0
+F0  // lw A
+6F              // work_save
+F1  // lw B
+7C              // SWL_hold
+F4  // A = A | B
 F2  // sw A
-5F              // timer_counter
+7E              // LEDL_hold
 F7  // goto
-F0              // L241 set LED ////////////////////////
-F0  // lw A     // goto here L118 when ending Timer_ISR
+73              // L116 end of Timer_ISR
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+F0  // lw A     // goto here L116 when ending Timer_ISR
 5F              // timer_counter
 F1  // lw B
-09              // CONSTANT 9
+0A              // CONSTANT 10
 54  // inc A    // timer_counter ++
-A6  // bgt      // if (timer_counter > 9)
-6F              // branch to L112
-F2  // sw A
+B6  // blt      // if (timer_counter < 10)
+7C              // branch to L125
+F0  // lw A
+00              // CONSTANT 0
+F2  // sw A     // branch to here L125
 5F              // timer_counter
 F7  // goto
-F0              // L241 set LED ////////////////////////
+EE              // L239 set LED ////////////////////////
 F0  // lw A     // Mouse_ISR starts here
 73              // XHL h9F
 F1  // lw B
@@ -163,7 +163,11 @@ A3              // MouseZ
 F2  // sw A     // goto here L163
 D0              // left byte
 F3  // sw B
-D1              // right byte
+D1              // right byte //////////////////////////
+F0  // lw A
+65              // CMYF
+F2  // sw A
+6F              // work_save
 F8  // goto IDLE
 FF  // nop      ////////////////////////////////////////
 FF
@@ -232,13 +236,7 @@ FF
 FF
 FF
 FF
-FF
-FF
-FF
-FF
-FF
-FF
-F2  // sw A     // goto here L241 set LED
+F2  // sw A     // goto here L239 set LED
 C1              // LEDH
 F1  // lw B
 E1              // SWH
@@ -248,6 +246,8 @@ F1  // lw B
 E0              // SWL
 F3  // sw B
 7C              // SWL_hold
+F1  // lw B
+7E              // LEDL_hold
 F3  // sw B
 C0              // LEDL
 F8  // goto IDLE
