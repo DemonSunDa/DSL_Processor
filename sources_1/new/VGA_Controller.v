@@ -32,7 +32,6 @@ module VGA_Controller(
     );
     
     parameter [7:0] VGABaseAddress = 8'hB0;
-    parameter [7:0] MouseLimitY = 120;
     
     wire [15:0] Config_colour = {8'hff, 8'h00};
     wire [14:0] address_connect;
@@ -86,7 +85,7 @@ module VGA_Controller(
             // Y coordinate
             else if (BUS_ADDR == VGABaseAddress + 1) begin
                 FrameBuffer_WE <= 1'b0;
-                ADDR_FB[14:8] <= MouseLimitY - BUS_DATA - 1;
+                ADDR_FB[14:8] <= BUS_DATA;
             end
             // Pixel value to write
             else if (BUS_ADDR == VGABaseAddress + 2) begin

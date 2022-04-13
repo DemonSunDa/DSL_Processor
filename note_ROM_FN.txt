@@ -1,5 +1,5 @@
-F8  // goto IDLE
-FF  // nop
+F7  // goto     // initiation sequence
+30              // L49
 FF              // Timer_ISR starts here
 F0  // lw A
 6F              // work_save
@@ -9,7 +9,35 @@ F4  // A = A | B
 F2  // sw A
 7E              // LEDL_hold
 F2  // sw A
-90              // IR addr
+90              // IR addr /////////////////////////////
+F0  // lw A     // goto here L13
+4D              // VGA_X_hold
+F1  // lw B
+4E              // VGA_Y_hold
+F2  // sw A
+B0              // VGA_X
+F3  // sw B
+B1              // VGA_Y
+F0  // lw A
+00              // CONSTANT 0
+F2  // sw A
+B2              // Pixel_data clear previous point
+F0  // lw A
+7A              // MouseX_hold
+F1  // lw B
+79              // MouseY_flip
+F2  // sw A
+4D              // VGA_X_hold
+F2  // sw A
+B0              // VGA_X
+F3  // sw B
+4E              // VGA_Y_hold
+F3  // sw B
+B1              // VGA_Y
+F0  // lw A
+01              // CONSTANT 1
+F2  // sw A
+B2              // Pixel_data set new point
 F7  // goto
 73              // L116 end of Timer_ISR
 FF
@@ -18,48 +46,20 @@ FF
 FF
 FF
 FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
+F0  // lw A     // goto here L49 initiation sequence
+40              // MCoordX
+F1  // lw B
+41              // MCoordY
+F2  // sw A
+78              // MouseX_flip
+F3  // sw B
+79              // MouseY_flip
+F2  // sw A
+7A              // MouseX_hold
+F3  // sw B
+7B              // MouseY_hold
+F7  // goto     // TODO grid setup
+0D              // L13
 FF
 FF
 FF
