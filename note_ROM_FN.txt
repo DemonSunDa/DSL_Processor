@@ -13,6 +13,18 @@ F2  // sw A
 F7  // goto
 30              // L049 set grid
 F0  // lw A     // goto here L015
+4D              // VGA_X_hold
+F1  // lw B
+4E              // VGA_Y_hold
+F2  // sw A
+B0              // VGA_X
+F3  // sw B
+B1              // VGA_Y
+F0  // lw A
+00              // CONSTANT 0
+F2  // sw A
+B2              // Pixel_data set new point
+F0  // lw A
 7A              // MouseX_hold
 F1  // lw B
 79              // MouseY_flip
@@ -34,50 +46,36 @@ FF
 FF
 FF
 FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
 F0  // lw A     // goto here L049 set grid
 00              // CONSTANT 0
 F2  // sw A
-4B              // VGA_ctrX ctrX = 0
-F2  // sw A
 4C              // VGA_ctrY ctrY = 0
-F0  // lw A     // goto here L055 Y_loop
+F0  // lw A     // branch to here L053 Y_loop
 4C              // VGA_ctrY
+F2  // sw A
+B1              // VGA_Y
 F1  // lw B
 77              // YHL
 A6  // bgt      // if (ctrY > YHL)
-70              // branch to L113 end_loop
+6E              // branch to L111 end_loop
 54  // inc A    // ctrY ++
 F2  // sw A
 4C              // VGA_ctrY ////////////////////////////
-F0  // lw A     // goto here L064 X_loop
+F0  // lw A
+00              // CONSTANT 0
+F2  // sw A
+4B              // VGA_ctrX ctrX = 0
+F0  // lw A     // goto here L068 X_loop
 4B              // VGA_ctrX
+F2  // sw A
+B0              // VGA_X
 F1  // lw B
 73              // XHL
 A6  // bgt      // if (ctrX > XHL)
-6E              // branch to L111
+34              // branch to L053 Y_loop
 54  // inc A    // ctrX ++
 F2  // sw A
 4B              // VGA_ctrX ////////////////////////////
-F0  // lw A
-4B              // VGA_ctrX
-F1  // lw B
-4C              // VGA_ctrY
-F2  // sw A
-B0              // VGA_X
-F3  // sw B
-B1              // VGA_Y
 F1  // lw B
 71              // XLB
 96  // beq      // if (ctrX == XLB)
@@ -96,22 +94,24 @@ F1  // lw B
 76              // YHB
 96  // beq      // if (ctrY == YHB)
 68              // branch to L105
-F0  // lw A
-00              // CONSTANT 0
-F2  // sw A
-B2              // Pixel_data clear this pixel
 F7  // goto
-3F              // L064 X_loop
+43              // L068 X_loop
+FF
+FF
+FF
+FF
+FF
+FF
 F0  // lw A     // branch to here L105
 01              // CONSTANT 1
 F2  // sw A
 B2              // Pixel_data set this pixel
 F7  // goto
-3F              // L064 X_loop
-F7  // goto     // goto here L111
-36              // L055 Y_loop
-F7  // goto     // branch to here L113 end_loop
+43              // L068 X_loop
+F7  // goto     // branch to here L111 end_loop
 0E              // L015
+FF
+FF
 FF
 F0  // lw A     // goto here L116 when ending Timer_ISR
 5F              // timer_counter
@@ -125,7 +125,7 @@ F0  // lw A
 F2  // sw A     // branch to here L125
 5F              // timer_counter
 F7  // goto
-EE              // L239 set LED ////////////////////////
+EE              // L239 set LED ////////////////////////////////////////////
 F0  // lw A     // Mouse_ISR starts here
 73              // XHL h9F
 F1  // lw B
@@ -219,7 +219,7 @@ F5  // B = A | B
 F3  // sw B
 6F              // work_save
 F8  // goto IDLE
-FF  // nop      ////////////////////////////////////////
+FF  // nop      ////////////////////////////////////////////////////////////
 FF
 FF
 F0  // lw A     // goto here L225 initiation sequence
