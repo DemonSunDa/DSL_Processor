@@ -13,18 +13,6 @@ F2  // sw A
 F7  // goto
 30              // L049 set grid
 F0  // lw A     // goto here L015
-4D              // VGA_X_hold
-F1  // lw B
-4E              // VGA_Y_hold
-F2  // sw A
-B0              // VGA_X
-F3  // sw B
-B1              // VGA_Y
-F0  // lw A
-00              // CONSTANT 0
-F2  // sw A
-B2              // Pixel_data set new point
-F0  // lw A
 7A              // MouseX_hold
 F1  // lw B
 79              // MouseY_flip
@@ -42,6 +30,18 @@ F2  // sw A
 B2              // Pixel_data set new point
 F7  // goto
 73              // L116 end of Timer_ISR
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
 FF
 FF
 FF
@@ -94,12 +94,12 @@ F1  // lw B
 76              // YHB
 96  // beq      // if (ctrY == YHB)
 68              // branch to L105
+F0  // lw A     // branch to here L105
+00              // CONSTANT 0
+F2  // sw A
+B2              // Pixel_data set this pixel
 F7  // goto
 43              // L068 X_loop
-FF
-FF
-FF
-FF
 FF
 FF
 F0  // lw A     // branch to here L105
