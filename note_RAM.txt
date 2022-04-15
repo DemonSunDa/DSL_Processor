@@ -62,8 +62,8 @@ F0  // 0x1F CONST   240
 00  // 0x3D
 00  // 0x3E
 00  // 0x3F
-00  // 0x40
-00  // 0x41
+4F  // 0x40 CONST   MCoordX
+3B  // 0x41 CONST   MCoordY
 00  // 0x42
 00  // 0x43
 00  // 0x44
@@ -73,11 +73,11 @@ F0  // 0x1F CONST   240
 00  // 0x48
 00  // 0x49
 00  // 0x4A
-00  // 0x4B
-00  // 0x4C
-00  // 0x4D
-00  // 0x4E
-00  // 0x4F
+00  // 0x4B VAR     VGA_ctrX
+00  // 0x4C VAR     VGA_ctrY
+00  // 0x4D VAR     VGA_X_hold
+00  // 0x4E VAR     VGA_Y_hold
+00  // 0x4F VAR     VGA_Pixel_data
 00  // 0x50 CONST   middle
 80  // 0x51 CONST   forward
 40  // 0x52 CONST   backward
@@ -174,9 +174,9 @@ A0  // 0x55 CONST   forward_left
 00  // 0xAD
 00  // 0xAE
 00  // 0xAF
-00  // 0xB0 REG     VGABaseAddr
-00  // 0xB1
-00  // 0xB2
+00  // 0xB0 REG     VGABaseAddr     VGA_X
+00  // 0xB1 REG                     VGA_Y
+00  // 0xB2 REG                     Pixel_data
 00  // 0xB3
 00  // 0xB4
 00  // 0xB5

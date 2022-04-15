@@ -61,7 +61,11 @@ module TOP(
     output [7:0] LEDL,
     // Switches
     input [7:0] SWH,
-    input [7:0] SWL
+    input [7:0] SWL,
+    // VGA
+    output VGA_HS,
+    output VGA_VS,
+    output [7:0] VGA_COLOUR
 );
 
     // Main bus
@@ -190,4 +194,14 @@ module TOP(
         .SWL(SWL)
     );
 
+    VGA_Controller vga (
+        .CLK(CLK),
+        .RESET(RESET),
+        .BUS_DATA(BUS_DATA),
+        .BUS_ADDR(BUS_ADDR),
+        .BUS_WE(BUS_WE),
+        .COLOUR_OUT(VGA_COLOUR),
+        .HS(VGA_HS),
+        .VS(VGA_VS)
+    );
 endmodule

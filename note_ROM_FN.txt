@@ -1,5 +1,5 @@
-F8  // goto IDLE
-FF  // nop
+F7  // goto     // initiation sequence
+E0              // L225
 FF              // Timer_ISR starts here
 F0  // lw A
 6F              // work_save
@@ -9,7 +9,25 @@ F4  // A = A | B
 F2  // sw A
 7E              // LEDL_hold
 F2  // sw A
-90              // IR addr
+90              // IR addr /////////////////////////////
+F7  // goto
+30              // L049 set grid
+F0  // lw A     // goto here L015
+7A              // MouseX_hold
+F1  // lw B
+79              // MouseY_flip
+F2  // sw A
+4D              // VGA_X_hold
+F2  // sw A
+B0              // VGA_X
+F3  // sw B
+4E              // VGA_Y_hold
+F3  // sw B
+B1              // VGA_Y
+F0  // lw A
+01              // CONSTANT 1
+F2  // sw A
+B2              // Pixel_data set new point
 F7  // goto
 73              // L116 end of Timer_ISR
 FF
@@ -28,88 +46,70 @@ FF
 FF
 FF
 FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
+F0  // lw A     // goto here L049 set grid
+00              // CONSTANT 0
+F2  // sw A
+4C              // VGA_ctrY ctrY = 0
+F0  // lw A     // branch to here L053 Y_loop
+4C              // VGA_ctrY
+F2  // sw A
+B1              // VGA_Y
+F1  // lw B
+77              // YHL
+A6  // bgt      // if (ctrY > YHL)
+6E              // branch to L111 end_loop
+54  // inc A    // ctrY ++
+F2  // sw A
+4C              // VGA_ctrY ////////////////////////////
+F0  // lw A
+00              // CONSTANT 0
+F2  // sw A
+4B              // VGA_ctrX ctrX = 0
+F0  // lw A     // goto here L068 X_loop
+4B              // VGA_ctrX
+F2  // sw A
+B0              // VGA_X
+F1  // lw B
+73              // XHL
+A6  // bgt      // if (ctrX > XHL)
+34              // branch to L053 Y_loop
+54  // inc A    // ctrX ++
+F2  // sw A
+4B              // VGA_ctrX ////////////////////////////
+F1  // lw B
+71              // XLB
+96  // beq      // if (ctrX == XLB)
+68              // branch to L105
+F1  // lw B
+72              // XHB
+96  // beq      // if (ctrX == XHB)
+68              // branch to L105
+F0  // lw A
+4C              // VGA_ctrY
+F1  // lw B
+75              // YLB
+96  // beq      // if (ctrY == YLB)
+68              // branch to L105
+F1  // lw B
+76              // YHB
+96  // beq      // if (ctrY == YHB)
+68              // branch to L105
+F0  // lw A     // branch to here L105
+00              // CONSTANT 0
+F2  // sw A
+B2              // Pixel_data set this pixel
+F7  // goto
+43              // L068 X_loop
+FF
+FF
+F0  // lw A     // branch to here L105
+01              // CONSTANT 1
+F2  // sw A
+B2              // Pixel_data set this pixel
+F7  // goto
+43              // L068 X_loop
+F7  // goto     // branch to here L111 end_loop
+0E              // L015
 FF
 FF
 FF
@@ -125,7 +125,7 @@ F0  // lw A
 F2  // sw A     // branch to here L125
 5F              // timer_counter
 F7  // goto
-EE              // L239 set LED ////////////////////////
+EE              // L239 set LED ////////////////////////////////////////////
 F0  // lw A     // Mouse_ISR starts here
 73              // XHL h9F
 F1  // lw B
@@ -219,23 +219,23 @@ F5  // B = A | B
 F3  // sw B
 6F              // work_save
 F8  // goto IDLE
-FF  // nop      ////////////////////////////////////////
+FF  // nop      ////////////////////////////////////////////////////////////
 FF
 FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
-FF
+F0  // lw A     // goto here L225 initiation sequence
+40              // MCoordX
+F1  // lw B
+41              // MCoordY
+F2  // sw A
+78              // MouseX_flip
+F3  // sw B
+79              // MouseY_flip
+F2  // sw A
+7A              // MouseX_hold
+F3  // sw B
+7B              // MouseY_hold
+F7  // goto
+30              // L049 set grid ///////////////////////
 F2  // sw A     // goto here L239 set LED
 C1              // LEDH
 F1  // lw B

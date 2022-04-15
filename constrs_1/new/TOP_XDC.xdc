@@ -160,3 +160,36 @@ set_property PACKAGE_PIN T1 [get_ports {SWH[6]}]
 set_property PACKAGE_PIN R2 [get_ports {SWH[7]}]
     set_property IOSTANDARD LVCMOS33 [get_ports {SWH[7]}]
 # switches
+
+# VGA_COLOUR
+set_property PACKAGE_PIN G19 [get_ports {VGA_COLOUR[0]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {VGA_COLOUR[0]}]
+
+set_property PACKAGE_PIN H19 [get_ports {VGA_COLOUR[1]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {VGA_COLOUR[1]}]
+
+set_property PACKAGE_PIN J19 [get_ports {VGA_COLOUR[2]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {VGA_COLOUR[2]}]
+
+set_property PACKAGE_PIN J17 [get_ports {VGA_COLOUR[3]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {VGA_COLOUR[3]}]
+
+set_property PACKAGE_PIN H17 [get_ports {VGA_COLOUR[4]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {VGA_COLOUR[4]}]
+
+set_property PACKAGE_PIN G17 [get_ports {VGA_COLOUR[5]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {VGA_COLOUR[5]}]
+
+set_property PACKAGE_PIN N18 [get_ports {VGA_COLOUR[6]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {VGA_COLOUR[6]}]
+
+set_property PACKAGE_PIN L18 [get_ports {VGA_COLOUR[7]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {VGA_COLOUR[7]}]
+# VGA_COLOUR
+
+# VGA HS and VS
+set_property PACKAGE_PIN P19 [get_ports VGA_HS]
+    set_property IOSTANDARD LVCMOS33 [get_ports VGA_HS]
+set_property PACKAGE_PIN R19 [get_ports VGA_VS]
+    set_property IOSTANDARD LVCMOS33 [get_ports VGA_VS]
+# VGA HS and VS
